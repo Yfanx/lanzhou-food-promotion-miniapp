@@ -5,24 +5,24 @@
       <text class="brand-text">兰州美食</text>
     </view>
     <view class="topbar-actions">
-      <view class="icon-button">搜</view>
-      <view class="icon-button" bindtap="goToSettings">⚙</view>
+      <view class="icon-button">藏</view>
+      <view class="icon-button" bindtap="goToSettings">设</view>
     </view>
   </view>
 
   <view class="profile-head section-block">
     <view class="avatar-ring">
       <image src="{{userInfo.avatarUrl || '/assets/icons/avatar.png'}}" class="profile-avatar" mode="aspectFill" bindtap="handleAvatarTap" />
-      <text class="profile-level">等级 5</text>
+      <text class="profile-level">传播者</text>
     </view>
     <text class="profile-name">{{profileName}}</text>
     <text class="profile-subtitle">{{profileSubtitle}}</text>
   </view>
 
   <view class="profile-tabs section-block">
-    <view class="profile-tab {{activeTab === '我的分享' ? 'profile-tab-active' : ''}}" data-tab="我的分享" bindtap="selectTab">我的分享</view>
-    <view class="profile-tab {{activeTab === '我的预约' ? 'profile-tab-active' : ''}}" data-tab="我的预约" bindtap="selectTab">我的预约</view>
-    <view class="profile-tab {{activeTab === '我的投票' ? 'profile-tab-active' : ''}}" data-tab="我的投票" bindtap="selectTab">我的投票</view>
+    <view class="profile-tab {{activeTab === '我的收藏' ? 'profile-tab-active' : ''}}" data-tab="我的收藏" bindtap="selectTab">我的收藏</view>
+    <view class="profile-tab {{activeTab === '我的足迹' ? 'profile-tab-active' : ''}}" data-tab="我的足迹" bindtap="selectTab">我的足迹</view>
+    <view class="profile-tab {{activeTab === '我的投稿' ? 'profile-tab-active' : ''}}" data-tab="我的投稿" bindtap="selectTab">我的投稿</view>
   </view>
 
   <view class="stats-grid section-block">
@@ -36,7 +36,7 @@
     <view class="section-head">
       <view>
         <text class="eyebrow">PERSONAL</text>
-        <text class="section-title">为您推荐</text>
+        <text class="section-title">我的文化内容</text>
       </view>
       <text class="section-link" bindtap="goToMenu" data-id="favorites">查看全部</text>
     </view>
@@ -44,11 +44,12 @@
     <view class="recommend-card card" wx:if="{{featuredRecommendation}}" bindtap="goToMenu" data-id="favorites">
       <image src="{{featuredRecommendation.coverImage}}" class="recommend-image" mode="aspectFill" />
       <view class="recommend-body">
-        <text class="recommend-title">{{featuredRecommendation.name}}</text>
+        <text class="recommend-tag">已收藏专题</text>
+        <text class="recommend-title">{{featuredRecommendation.title}}</text>
         <text class="recommend-brief">{{featuredRecommendation.brief}}</text>
         <view class="recommend-meta">
-          <text>4.9</text>
-          <text>{{featuredRecommendation.sales}} 份偏好</text>
+          <text>文化档案</text>
+          <text>{{featuredRecommendation.createTime}}</text>
         </view>
       </view>
     </view>
@@ -56,8 +57,8 @@
     <view class="recommend-mini card" wx:if="{{secondaryRecommendation}}">
       <image src="{{secondaryRecommendation.coverImage}}" class="recommend-mini-image" mode="aspectFill" />
       <view class="recommend-mini-copy">
-        <text class="recommend-mini-tag">文化典藏</text>
-        <text class="recommend-mini-title">{{secondaryRecommendation.name}}</text>
+        <text class="recommend-mini-tag">继续阅读</text>
+        <text class="recommend-mini-title">{{secondaryRecommendation.title}}</text>
         <text class="recommend-mini-brief">{{secondaryRecommendation.brief}}</text>
       </view>
     </view>
@@ -66,7 +67,7 @@
   <view class="quick-actions section-block">
     <view class="quick-item card" wx:for="{{actions}}" wx:key="id" bindtap="goToMenu" data-id="{{item.id}}">
       <text class="quick-title">{{item.title}}</text>
-      <text class="quick-arrow">›</text>
+      <text class="quick-arrow">→</text>
     </view>
   </view>
 

@@ -1,18 +1,15 @@
-const app = getApp()
 const mockData = require('../../utils/mock-data')
-const cloud = require('../../utils/cloud')
 const { deepResolveDisplayImages, isInvalidImagePath } = require('../../utils/cloud-images')
-
-function buildHomeFoods(list = []) {
-  return {
-    hotFoods: list,
-    featuredFood: list[0] || null,
-    sideHotFoods: list.slice(1, 4)
-  }
-}
 
 function hasUsableImage(list = [], key) {
   return list.some((item) => !isInvalidImagePath(item && item[key]))
+}
+
+function buildArchiveState(list = []) {
+  return {
+    featuredStory: list[0] || null,
+    archiveHighlights: list.slice(1, 4)
+  }
 }
 
 Page({
@@ -21,11 +18,9 @@ Page({
     promoFeatures: [],
     documentaries: [],
     categories: [],
-    hotFoods: [],
-    featuredFood: null,
-    sideHotFoods: [],
-    recommendations: [],
     activities: [],
+    featuredStory: null,
+    archiveHighlights: [],
     loading: true
   },
 
@@ -33,30 +28,8 @@ Page({
     this.loadBanners()
     this.loadPromotions()
     this.loadCategories()
-    this.loadHotFoods()
+    this.loadArticles()
     this.loadActivities()
-    if (app.globalData.userInfo) {
-      this.loadRecommendations()
-    }
-  },
-
-  onShow() {
-    if (!app.globalData.openid) {
-      this.checkLogin()
-      return
-    }
-
-    this.loadRecommendations()
-  },
-
-  async checkLogin() {
-    try {
-      const userInfo = await app.getUserInfo()
-      app.globalData.userInfo = userInfo
-      this.loadRecommendations()
-    } catch (error) {
-      this.setData({ recommendations: [] })
-    }
   },
 
   async loadBanners() {
@@ -102,25 +75,21 @@ Page({
     }
   },
 
-  async loadHotFoods() {
+  async loadArticles() {
     try {
       const db = wx.cloud.database()
-      const res = await db.collection('foods')
-        .where({ status: 1, isHot: 1 })
-        .orderBy('sort', 'asc')
-        .limit(10)
+      const res = await db.collection('articles')
+        .where({ type: 'culture', status: 1 })
+        .orderBy('createTime', 'desc')
+        .limit(4)
         .get()
 
-      const foods = await deepResolveDisplayImages(
-        hasUsableImage(res.data || [], 'coverImage') ? res.data : mockData.getHotFoods()
-      )
-      const nextState = buildHomeFoods(foods)
-      nextState.loading = false
-      this.setData(nextState)
+      const source = res.data.length && hasUsableImage(res.data, 'coverImage')
+        ? res.data
+        : mockData.getArticles()
+      this.setData(buildArchiveState(await deepResolveDisplayImages(source)))
     } catch (error) {
-      const nextState = buildHomeFoods(await deepResolveDisplayImages(mockData.getHotFoods()))
-      nextState.loading = false
-      this.setData(nextState)
+      this.setData(buildArchiveState(await deepResolveDisplayImages(mockData.getArticles())))
     }
   },
 
@@ -141,31 +110,12 @@ Page({
       const activities = await deepResolveDisplayImages(
         hasUsableImage(res.data || [], 'coverImage') ? res.data : mockData.getHomeActivities()
       )
-      this.setData({ activities })
+      this.setData({ activities, loading: false })
     } catch (error) {
-      this.setData({ activities: await deepResolveDisplayImages(mockData.getHomeActivities()) })
-    }
-  },
-
-  async loadRecommendations() {
-    if (this.recommendationsLoading) {
-      return
-    }
-
-    if (!app.globalData.userInfo) {
-      this.setData({ recommendations: [] })
-      return
-    }
-
-    try {
-      this.recommendationsLoading = true
-      const res = await cloud.callFunction('getRecommendations', { limit: 2 })
-      const result = res.result || res
-      this.setData({ recommendations: await deepResolveDisplayImages(result.foods || []) })
-    } catch (error) {
-      this.setData({ recommendations: [] })
-    } finally {
-      this.recommendationsLoading = false
+      this.setData({
+        activities: await deepResolveDisplayImages(mockData.getHomeActivities()),
+        loading: false
+      })
     }
   },
 
@@ -176,11 +126,8 @@ Page({
     })
   },
 
-  goToFoodDetail(e) {
-    const { id } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `/pages/food-detail/index?id=${id}`
-    })
+  goToFoodList() {
+    wx.navigateTo({ url: '/pages/category/index' })
   },
 
   goToActivity() {
@@ -191,16 +138,24 @@ Page({
     wx.navigateTo({ url: '/pages/announcement/index' })
   },
 
-  goToFoodList() {
-    wx.switchTab({ url: '/pages/category/index' })
+  goToPromoPage() {
+    wx.switchTab({ url: '/pages/promo/index' })
   },
 
-  goToPromoPage() {
-    wx.navigateTo({ url: '/pages/promo/index' })
+  goToCulturePage() {
+    wx.navigateTo({ url: '/pages/culture/index' })
   },
 
   goToDocumentary(e) {
-    const { articleId } = e.currentTarget.dataset
+    const { documentaryId, articleId, playable } = e.currentTarget.dataset
+    const isPlayable = playable === true || playable === 'true' || playable === 1
+    if (isPlayable && documentaryId) {
+      wx.navigateTo({
+        url: `/pages/video-player/index?id=${documentaryId}`
+      })
+      return
+    }
+
     if (!articleId) {
       this.goToPromoPage()
       return
@@ -211,14 +166,14 @@ Page({
     })
   },
 
-  goToRecommendation(e) {
+  goToStoryDetail(e) {
     const { id } = e.currentTarget.dataset
     if (!id) {
       return
     }
 
     wx.navigateTo({
-      url: `/pages/food-detail/index?id=${id}`
+      url: `/pages/culture-detail/index?id=${id}`
     })
   }
 })

@@ -48,6 +48,8 @@
 
 .hero-cta {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 24rpx;
   padding: 18rpx 30rpx;
   border-radius: 999rpx;
@@ -55,6 +57,24 @@
   color: #ffffff;
   font-size: 22rpx;
   font-weight: 800;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.hero-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18rpx 30rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.4);
+  border-radius: 999rpx;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 700;
 }
 
 .ticker {
@@ -190,6 +210,23 @@
   line-height: 1.6;
 }
 
+.doc-play-row {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.doc-play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14rpx 24rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
 .category-grid {
   display: flex;
   flex-wrap: wrap;
@@ -245,10 +282,9 @@
   margin-bottom: 16rpx;
 }
 
-.featured-price {
-  color: var(--color-primary);
-  font-size: 40rpx;
-  font-style: italic;
+.featured-type {
+  color: #8a746d;
+  font-size: 20rpx;
   font-weight: 700;
 }
 
@@ -299,6 +335,13 @@
   font-size: 32rpx;
   font-style: italic;
   font-weight: 700;
+}
+
+.side-tag {
+  color: var(--color-secondary);
+  font-size: 18rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
 }
 
 .side-desc {

@@ -2,9 +2,21 @@ const cloud = require('../../utils/cloud.js')
 const mockData = require('../../utils/mock-data')
 const { deepResolveDisplayImages, isInvalidImagePath } = require('../../utils/cloud-images')
 
+function buildLocalArticle(id) {
+  return mockData.getArticleById(id) || mockData.getArticles()[0] || null
+}
+
+function buildDocumentary(article) {
+  if (!article || !article._id) {
+    return null
+  }
+  return mockData.getDocumentaryByArticleId(article._id)
+}
+
 Page({
   data: {
     article: null,
+    documentary: null,
     loading: true
   },
 
@@ -16,13 +28,15 @@ Page({
   },
 
   async showFastArticle(id) {
-    const article = mockData.getArticles().find((item) => item._id === id) || mockData.getArticles()[0]
+    const article = buildLocalArticle(id)
     if (!article) {
       return
     }
 
+    const documentary = buildDocumentary(article)
     this.setData({
       article: await deepResolveDisplayImages(article),
+      documentary: documentary ? await deepResolveDisplayImages(documentary) : null,
       loading: false
     })
   },
@@ -35,7 +49,13 @@ Page({
       const res = await cloud.callFunction('getArticleDetail', { id })
       const result = res.result || res
       if (result.article && !isInvalidImagePath(result.article.coverImage)) {
-        this.setData({ article: await deepResolveDisplayImages(result.article), loading: false })
+        const article = result.article
+        const documentary = buildDocumentary(article)
+        this.setData({
+          article: await deepResolveDisplayImages(article),
+          documentary: documentary ? await deepResolveDisplayImages(documentary) : null,
+          loading: false
+        })
       } else {
         throw new Error('not_found')
       }
@@ -44,9 +64,25 @@ Page({
         this.setData({ loading: false })
         return
       }
-      const article = mockData.getArticles().find((item) => item._id === id) || mockData.getArticles()[0]
-      this.setData({ article: await deepResolveDisplayImages(article), loading: false })
+      const article = buildLocalArticle(id)
+      const documentary = buildDocumentary(article)
+      this.setData({
+        article: await deepResolveDisplayImages(article),
+        documentary: documentary ? await deepResolveDisplayImages(documentary) : null,
+        loading: false
+      })
     }
+  },
+
+  goToVideoPage() {
+    const { documentary } = this.data
+    if (!documentary) {
+      return
+    }
+
+    wx.navigateTo({
+      url: `/pages/video-player/index?id=${documentary._id}`
+    })
   },
 
   onShareAppMessage() {

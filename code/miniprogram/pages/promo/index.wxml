@@ -8,8 +8,12 @@
 
   <view class="promo-hero card section-block">
     <text class="eyebrow">PROMOTION</text>
-    <text class="promo-hero-title">让小程序从“点餐入口”转向“城市美食文化宣传窗口”</text>
-    <text class="promo-hero-desc">这一页集中展示适合答辩和后续完善的宣传内容结构，包括宣传片片单、城市故事主线、非遗技艺表达与专题阅读入口。</text>
+    <text class="promo-hero-title">让小程序从“功能入口”转向“城市美食文化宣传窗口”</text>
+    <text class="promo-hero-desc">这一页集中展示适合答辩和后续完善的宣传内容结构，包括宣传片片单、城市故事主线、非遗技艺表达与文化档案入口。</text>
+    <view class="promo-hero-actions">
+      <view class="promo-hero-btn" bindtap="goToCulturePage">进入内容中心</view>
+      <view class="promo-hero-ghost" bindtap="goToActivityPage">查看活动路线</view>
+    </view>
   </view>
 
   <view class="section-block">
@@ -39,7 +43,7 @@
       </view>
     </view>
     <view class="doc-list">
-      <view class="doc-item card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToArticle" data-id="{{item.articleId}}">
+      <view class="doc-item card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToArticle" data-id="{{item.articleId}}" data-documentary-id="{{item._id}}" data-playable="{{item.playable}}">
         <image src="{{item.poster}}" class="doc-item-image" mode="aspectFill" />
         <view class="doc-item-body">
           <view class="doc-item-meta">
@@ -48,7 +52,7 @@
           </view>
           <text class="doc-item-title">{{item.title}}</text>
           <text class="doc-item-desc">{{item.brief}}</text>
-          <text class="doc-item-link">查看对应文化内容</text>
+          <text class="doc-item-link">{{item.actionText || '查看对应文化内容'}}</text>
         </view>
       </view>
     </view>

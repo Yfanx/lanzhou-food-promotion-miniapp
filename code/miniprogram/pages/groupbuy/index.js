@@ -59,7 +59,7 @@ Page({
     const userInfo = app.globalData.userInfo
 
     if (!product) {
-      wx.showToast({ title: '商品信息异常', icon: 'none' })
+      wx.showToast({ title: '组合信息异常', icon: 'none' })
       return
     }
 
@@ -68,7 +68,7 @@ Page({
       return
     }
 
-    if (!requirePhoneBinding(userInfo, '团购下单需要手机号')) {
+    if (!requirePhoneBinding(userInfo, '预约体验需要先绑定手机号')) {
       return
     }
 
@@ -96,12 +96,12 @@ Page({
         }
       })
 
-      wx.showToast({ title: '下单成功', icon: 'success' })
+      wx.showToast({ title: '预约已提交', icon: 'success' })
       setTimeout(() => {
         wx.navigateTo({ url: '/pages/orders/index' })
       }, 800)
     } catch (error) {
-      wx.showToast({ title: '下单失败', icon: 'none' })
+      wx.showToast({ title: '预约提交失败', icon: 'none' })
     }
   }
 })

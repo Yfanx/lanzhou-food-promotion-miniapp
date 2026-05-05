@@ -1,0 +1,68 @@
+<view class="page-shell video-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="video-hero card section-block" wx:if="{{documentary}}">
+    <image src="{{documentary.poster}}" class="video-hero-image" mode="aspectFill" />
+    <view class="video-hero-mask"></view>
+    <view class="video-hero-body">
+      <text class="pill pill-secondary">{{documentary.category || '宣传片'}}</text>
+      <text class="video-title">{{documentary.title}}</text>
+      <text class="video-brief">{{documentary.brief}}</text>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{documentary && documentary.playable}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">VIDEO</text>
+        <text class="section-title">在线播放</text>
+      </view>
+    </view>
+    <view class="player-card card">
+      <video
+        class="video-player"
+        src="{{documentary.videoUrl}}"
+        poster="{{documentary.poster}}"
+        controls
+        show-center-play-btn
+        enable-progress-gesture
+        object-fit="cover"
+        binderror="handleVideoError"
+      ></video>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{documentary && !documentary.playable}}">
+    <view class="fallback-card card">
+      <text class="fallback-title">当前为专题型内容</text>
+      <text class="fallback-text">这条片单暂不直接播放，适合通过图文专题和讲解内容承接答辩展示。你可以继续查看对应的文化详情页。</text>
+      <view class="fallback-btn" bindtap="goToArticle">查看专题正文</view>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{article}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">ARTICLE</text>
+        <text class="section-title">对应宣传文稿</text>
+      </view>
+    </view>
+    <view class="article-card card" bindtap="goToArticle">
+      <image src="{{article.coverImage}}" class="article-image" mode="aspectFill" />
+      <view class="article-body">
+        <text class="article-title">{{article.title}}</text>
+        <text class="article-brief">{{article.brief}}</text>
+        <text class="article-link">进入专题详情</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

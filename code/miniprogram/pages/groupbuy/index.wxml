@@ -5,30 +5,36 @@
       <text class="brand-text">兰州美食</text>
     </view>
     <view class="topbar-actions">
-      <view class="icon-button">团</view>
+      <view class="icon-button">行</view>
     </view>
   </view>
 
   <view class="section-block">
-    <text class="eyebrow">GROUP BUY</text>
-    <text class="section-title">地道风味，拼团共享。</text>
-    <text class="market-intro">通过拼团套餐体验兰州美食主题内容，支持直接下单并跳转订单页查看结果。</text>
+    <text class="eyebrow">EXPERIENCE</text>
+    <text class="section-title">特色体验组合</text>
+    <text class="market-intro">这里保留少量预约能力，但页面定位已经调整为“宣传延伸体验”入口，用于承接答辩展示中的特色套餐、线下路线与主题体验。</text>
+  </view>
+
+  <view class="market-tip section-block">
+    <text class="market-tip-title">使用说明</text>
+    <text class="market-tip-text">优先浏览专题内容与文化介绍；如需实际体验，再进入对应组合详情并完成手机号绑定后预约。</text>
   </view>
 
   <view class="market-feature card" wx:if="{{featuredProduct}}">
     <view bindtap="goToDetail" data-id="{{featuredProduct.foodId}}">
       <image src="{{featuredProduct.coverImage}}" class="market-feature-image" mode="aspectFill" />
       <view class="market-feature-body">
-        <text class="pill pill-secondary">团购独家</text>
+        <text class="pill pill-secondary">宣传延伸路线</text>
         <text class="market-feature-title">{{featuredProduct.name}}</text>
+        <text class="market-copy">适合在答辩中作为“从宣传内容延伸到线下体验”的示例，不再以纯交易作为主叙事。</text>
         <view class="market-price-row">
           <text class="market-price">¥{{featuredProduct.groupPrice}}</text>
-          <text class="market-origin">¥{{featuredProduct.originalPrice}}</text>
+          <text class="market-origin">参考价 ¥{{featuredProduct.originalPrice}}</text>
         </view>
-        <text class="market-meta">{{featuredProduct.minPeople}}人成团 · 库存 {{featuredProduct.stock}}</text>
+        <text class="market-meta">{{featuredProduct.minPeople}}人成团 · 剩余名额 {{featuredProduct.stock}}</text>
       </view>
     </view>
-    <view class="market-join" bindtap="quickOrder" data-index="0">立即下单</view>
+    <view class="market-join" bindtap="quickOrder" data-index="0">前往预约</view>
   </view>
 
   <view class="market-grid">
@@ -37,13 +43,14 @@
         <image src="{{item.coverImage}}" class="market-card-image" mode="aspectFill" />
         <view class="market-card-body">
           <text class="market-card-title">{{item.name}}</text>
+          <text class="market-copy">查看这组美食主题体验对应的内容介绍与组合信息。</text>
           <view class="market-price-row">
             <text class="market-price">¥{{item.groupPrice}}</text>
-            <text class="market-origin">¥{{item.originalPrice}}</text>
+            <text class="market-origin">参考价 ¥{{item.originalPrice}}</text>
           </view>
         </view>
       </view>
-      <view class="market-join" bindtap="quickOrder" data-index="{{index + 1}}">立即下单</view>
+      <view class="market-join" bindtap="quickOrder" data-index="{{index + 1}}">了解并预约</view>
     </view>
   </view>
 </view>

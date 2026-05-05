@@ -1,20 +1,36 @@
 const mockData = require('../../utils/mock-data')
 const { deepResolveDisplayImages, isInvalidImagePath } = require('../../utils/cloud-images')
 
-function buildArticleState(articles = []) {
+const TAB_ORDER = ['全部内容', '专题策展', '非遗技艺', '城市记忆', '街巷烟火']
+
+function decorateArticles(list = []) {
+  const labels = ['专题策展', '非遗技艺', '城市记忆', '街巷烟火']
+  return list.map((item, index) => Object.assign({}, item, {
+    sectionLabel: labels[index % labels.length]
+  }))
+}
+
+function buildArticleState(list = [], activeTab = '全部内容') {
+  const decorated = decorateArticles(list)
+  const filtered = activeTab === '全部内容'
+    ? decorated
+    : decorated.filter((item) => item.sectionLabel === activeTab)
+
   return {
-    articles,
-    featuredArticle: articles[0] || null
+    allArticles: decorated,
+    articles: filtered,
+    featuredArticle: filtered[0] || decorated[0] || null
   }
 }
 
 Page({
   data: {
+    allArticles: [],
     articles: [],
     featuredArticle: null,
     loading: true,
-    tabs: ['全部档案', '历史渊源', '传统工艺', '民俗文化', '专家讲座'],
-    activeTab: '全部档案'
+    tabs: TAB_ORDER,
+    activeTab: '全部内容'
   },
 
   onLoad() {
@@ -32,19 +48,26 @@ Page({
       const source = res.data.length && res.data.some((item) => !isInvalidImagePath(item.coverImage))
         ? res.data
         : mockData.getArticles()
-      const nextState = buildArticleState(await deepResolveDisplayImages(source))
+      const nextState = buildArticleState(
+        await deepResolveDisplayImages(source),
+        this.data.activeTab
+      )
       nextState.loading = false
       this.setData(nextState)
     } catch (error) {
       console.error('load culture articles failed', error)
-      const nextState = buildArticleState(await deepResolveDisplayImages(mockData.getArticles()))
+      const nextState = buildArticleState(
+        await deepResolveDisplayImages(mockData.getArticles()),
+        this.data.activeTab
+      )
       nextState.loading = false
       this.setData(nextState)
     }
   },
 
   selectTab(e) {
-    this.setData({ activeTab: e.currentTarget.dataset.tab })
+    const activeTab = e.currentTarget.dataset.tab
+    this.setData(Object.assign({ activeTab }, buildArticleState(this.data.allArticles, activeTab)))
   },
 
   goToDetail(e) {
@@ -52,5 +75,9 @@ Page({
     wx.navigateTo({
       url: `/pages/culture-detail/index?id=${id}`
     })
+  },
+
+  goToPromoPage() {
+    wx.switchTab({ url: '/pages/promo/index' })
   }
 })

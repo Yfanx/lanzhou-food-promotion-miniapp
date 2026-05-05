@@ -6,6 +6,28 @@
   line-height: 1.75;
 }
 
+.market-tip {
+  padding: 26rpx 28rpx;
+  border-radius: 28rpx;
+  background: rgba(253, 187, 36, 0.14);
+}
+
+.market-tip-title {
+  display: block;
+  color: #8d5d00;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.market-tip-text,
+.market-copy {
+  display: block;
+  margin-top: 10rpx;
+  color: var(--color-text-soft);
+  font-size: 22rpx;
+  line-height: 1.7;
+}
+
 .market-feature {
   overflow: hidden;
   margin-bottom: 18rpx;
@@ -41,7 +63,7 @@
 
 .market-price {
   color: var(--color-primary);
-  font-size: 40rpx;
+  font-size: 34rpx;
   font-style: italic;
   font-weight: 700;
 }

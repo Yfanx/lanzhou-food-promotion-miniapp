@@ -275,7 +275,10 @@ const articles = [
     coverImage: '/assets/test-images/articles/article-1.jpg',
     createTime: '2026-04-15',
     status: 1,
-    type: 'culture'
+    type: 'culture',
+    category: '城市名片',
+    content: '清晨的兰州往往从一碗面开始。牛肉面不只是食物本身，它还是城市节奏、街巷记忆和外地游客理解兰州的第一入口。这个专题把门店晨起、汤锅开汤、食客进店和城市日常并置起来，突出兰州美食作为城市名片的传播价值。',
+    documentaryId: 'doc-1'
   },
   {
     _id: 'article-2',
@@ -284,7 +287,10 @@ const articles = [
     coverImage: '/assets/test-images/articles/article-2.jpg',
     createTime: '2026-04-14',
     status: 1,
-    type: 'culture'
+    type: 'culture',
+    category: '非遗技艺',
+    content: '从和面、醒面、拉面到浇汤，一碗面的完成包含大量经验和手工判断。这个专题把拉面师傅的技艺、配比逻辑和出餐节奏组织成可展示的内容，强调项目的宣传方向不是售卖，而是讲清楚手艺、人物和传承。',
+    documentaryId: 'doc-2'
   },
   {
     _id: 'article-3',
@@ -293,7 +299,10 @@ const articles = [
     coverImage: '/assets/test-images/articles/article-3.jpg',
     createTime: '2026-04-13',
     status: 1,
-    type: 'culture'
+    type: 'culture',
+    category: '街巷烟火',
+    content: '夜市、烤肉、酿皮和摊位灯光共同构成了兰州夜间的美食气质。这个专题不强调交易信息，而是强调人流、摊位、声音和地方生活方式，让用户看到兰州味道背后的城市温度。',
+    documentaryId: 'doc-3'
   }
 ]
 
@@ -348,7 +357,10 @@ const documentaries = [
     poster: '/assets/test-images/articles/article-1.jpg',
     duration: '08:30',
     category: '城市宣传片',
-    articleId: 'article-1'
+    articleId: 'article-1',
+    playable: true,
+    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    actionText: '播放宣传短片'
   },
   {
     _id: 'doc-2',
@@ -357,7 +369,10 @@ const documentaries = [
     poster: '/assets/test-images/articles/article-2.jpg',
     duration: '11:20',
     category: '技艺纪录片',
-    articleId: 'article-2'
+    articleId: 'article-2',
+    playable: true,
+    videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    actionText: '播放技艺短片'
   },
   {
     _id: 'doc-3',
@@ -366,9 +381,24 @@ const documentaries = [
     poster: '/assets/test-images/articles/article-3.jpg',
     duration: '09:45',
     category: '街区故事',
-    articleId: 'article-3'
+    articleId: 'article-3',
+    playable: false,
+    videoUrl: '',
+    actionText: '查看专题介绍'
   }
 ]
+
+const documentaryMapById = documentaries.reduce((acc, item) => {
+  acc[item._id] = item
+  return acc
+}, {})
+
+const documentaryMapByArticleId = documentaries.reduce((acc, item) => {
+  if (item.articleId) {
+    acc[item.articleId] = item
+  }
+  return acc
+}, {})
 
 function clone(data) {
   return deepResolveCloudImages(JSON.parse(JSON.stringify(data)))
@@ -397,6 +427,21 @@ function getFoodById(id) {
   return found ? normalizeFood(found) : null
 }
 
+function getArticleById(id) {
+  const found = articles.find((item) => item._id === id)
+  return found ? JSON.parse(JSON.stringify(found)) : null
+}
+
+function getDocumentaryById(id) {
+  const found = documentaryMapById[id]
+  return found ? JSON.parse(JSON.stringify(found)) : null
+}
+
+function getDocumentaryByArticleId(articleId) {
+  const found = documentaryMapByArticleId[articleId]
+  return found ? JSON.parse(JSON.stringify(found)) : null
+}
+
 function getHotFoods(limit = 10) {
   return foods
     .filter((item) => item.isHot === 1 && item.status === 1)
@@ -419,6 +464,7 @@ module.exports = {
   getCategories: () => clone(categories),
   getFoods,
   getFoodById,
+  getArticleById,
   getHotFoods,
   getDiscountFoods,
   getActivities: () => clone(activities),
@@ -427,6 +473,8 @@ module.exports = {
   getArticles: () => clone(articles),
   getAnnouncements: () => clone(announcements),
   getPromoFeatures: () => clone(promoFeatures),
-  getDocumentaries: () => clone(documentaries)
+  getDocumentaries: () => clone(documentaries),
+  getDocumentaryById,
+  getDocumentaryByArticleId
 }
 const { deepResolveCloudImages } = require('./cloud-images')

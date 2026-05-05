@@ -10,15 +10,36 @@
     <image src="{{article.coverImage}}" class="detail-hero-image" mode="aspectFill" />
     <view class="detail-hero-mask"></view>
     <view class="detail-hero-body">
-      <text class="pill pill-secondary">文化档案</text>
+      <text class="pill pill-secondary">{{article.category || '文化档案'}}</text>
       <text class="detail-hero-title">{{article.title}}</text>
     </view>
   </view>
 
   <view class="detail-content section-block" wx:if="{{article}}">
     <text class="detail-section-title">{{article.title}}</text>
-    <text class="detail-meta">{{article.createTime}} · {{article.category}}</text>
+    <text class="detail-meta">{{article.createTime}} · {{article.category || '文化专题'}}</text>
     <text class="detail-text">{{article.content || article.brief}}</text>
+  </view>
+
+  <view class="section-block" wx:if="{{documentary}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">RELATED FILM</text>
+        <text class="section-title">关联宣传片</text>
+      </view>
+    </view>
+    <view class="related-doc card" bindtap="goToVideoPage">
+      <image src="{{documentary.poster}}" class="related-doc-image" mode="aspectFill" />
+      <view class="related-doc-body">
+        <view class="related-doc-meta">
+          <text class="related-doc-tag">{{documentary.category}}</text>
+          <text class="related-doc-duration">{{documentary.duration}}</text>
+        </view>
+        <text class="related-doc-title">{{documentary.title}}</text>
+        <text class="related-doc-brief">{{documentary.brief}}</text>
+        <view class="related-doc-btn">{{documentary.actionText || '查看片单'}}</view>
+      </view>
+    </view>
   </view>
 
   <view class="loading" wx:if="{{loading}}">

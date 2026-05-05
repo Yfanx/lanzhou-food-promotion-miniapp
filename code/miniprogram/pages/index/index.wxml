@@ -6,7 +6,7 @@
     </view>
     <view class="topbar-actions">
       <view class="icon-button">城</view>
-      <view class="icon-button">片</view>
+      <view class="icon-button">宣</view>
     </view>
   </view>
 
@@ -18,8 +18,11 @@
           <view class="hero-overlay">
             <text class="pill pill-secondary">城市宣传</text>
             <text class="hero-title">{{item.title || '兰州美食城市名片'}}</text>
-            <text class="hero-desc">从清晨的一碗面，到夜市里的烟火气，把兰州味道组织成适合传播、展示和讲述的城市叙事。</text>
-            <view class="hero-cta" bindtap="goToPromoPage">进入宣传专题</view>
+            <text class="hero-desc">从一碗面、一道街巷烟火到手艺人的清晨劳作，把兰州味道组织成适合传播、答辩展示与文化阅读的城市故事。</text>
+            <view class="hero-actions">
+              <view class="hero-cta" bindtap="goToPromoPage">进入宣传专题</view>
+              <view class="hero-ghost" bindtap="goToCulturePage">浏览文化档案</view>
+            </view>
           </view>
         </view>
       </swiper-item>
@@ -28,7 +31,7 @@
 
   <view class="ticker section-block" bindtap="goToAnnouncement">
     <text class="ticker-label">动态</text>
-    <text class="ticker-text">最新公告、文化档案更新、专题推荐与活动报名入口统一汇集在这里。</text>
+    <text class="ticker-text">这里集中展示公告更新、专题策划、文化活动和线下体验的统一入口。</text>
     <text class="ticker-arrow">→</text>
   </view>
 
@@ -36,9 +39,9 @@
     <view class="section-head">
       <view>
         <text class="eyebrow">PROMOTION</text>
-        <text class="section-title">城市宣传专题</text>
+        <text class="section-title">城市宣传主线</text>
       </view>
-      <text class="section-link" bindtap="goToPromoPage">查看片单</text>
+      <text class="section-link" bindtap="goToPromoPage">查看专题</text>
     </view>
     <scroll-view class="promo-scroll" scroll-x enhanced show-scrollbar="false">
       <view class="promo-row">
@@ -57,12 +60,13 @@
   <view class="section-block">
     <view class="section-head">
       <view>
-        <text class="eyebrow">DOCUMENTARY</text>
+        <text class="eyebrow">FILMS</text>
         <text class="section-title">纪录片与宣传片推荐</text>
       </view>
+      <text class="section-link" bindtap="goToPromoPage">进入片单</text>
     </view>
     <view class="doc-feed">
-      <view class="doc-card card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToDocumentary" data-article-id="{{item.articleId}}">
+      <view class="doc-card card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToDocumentary" data-documentary-id="{{item._id}}" data-article-id="{{item.articleId}}" data-playable="{{item.playable}}">
         <image src="{{item.poster}}" class="doc-poster" mode="aspectFill" />
         <view class="doc-mask"></view>
         <view class="doc-body">
@@ -72,6 +76,9 @@
           </view>
           <text class="doc-title">{{item.title}}</text>
           <text class="doc-desc">{{item.brief}}</text>
+          <view class="doc-play-row">
+            <view class="doc-play-btn">{{item.actionText || '查看对应内容'}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -80,9 +87,43 @@
   <view class="section-block">
     <view class="section-head">
       <view>
-        <text class="eyebrow">DISCOVER</text>
-        <text class="section-title">风味入口</text>
+        <text class="eyebrow">ARCHIVE</text>
+        <text class="section-title">非遗技艺与城市记忆</text>
       </view>
+      <text class="section-link" bindtap="goToCulturePage">进入内容中心</text>
+    </view>
+
+    <view class="featured-card card" wx:if="{{featuredStory}}" bindtap="goToStoryDetail" data-id="{{featuredStory._id}}">
+      <image src="{{featuredStory.coverImage}}" class="featured-image" mode="aspectFill" />
+      <view class="featured-body">
+        <view class="featured-meta">
+          <text class="pill pill-secondary">专题主稿</text>
+          <text class="featured-type">{{featuredStory.createTime}}</text>
+        </view>
+        <text class="featured-title">{{featuredStory.title}}</text>
+        <text class="featured-desc">{{featuredStory.brief}}</text>
+      </view>
+    </view>
+
+    <view class="side-feed">
+      <view class="side-card card" wx:for="{{archiveHighlights}}" wx:key="_id" bindtap="goToStoryDetail" data-id="{{item._id}}">
+        <image src="{{item.coverImage}}" class="side-image" mode="aspectFill" />
+        <view class="side-body">
+          <text class="side-tag">文化档案</text>
+          <text class="side-title">{{item.title}}</text>
+          <text class="side-desc">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">ROUTES</text>
+        <text class="section-title">风味专题索引</text>
+      </view>
+      <text class="section-link" bindtap="goToFoodList">查看全部</text>
     </view>
     <view class="category-grid">
       <view class="category-card" wx:for="{{categories}}" wx:key="_id" bindtap="goToCategory" data-id="{{item._id}}">
@@ -93,62 +134,11 @@
     </view>
   </view>
 
-  <view class="section-block">
-    <view class="section-head">
-      <view>
-        <text class="eyebrow">CURATED</text>
-        <text class="section-title">代表风味与地方名片</text>
-      </view>
-      <text class="section-link" bindtap="goToFoodList">查看全部</text>
-    </view>
-
-    <view class="featured-card card" wx:if="{{featuredFood}}" bindtap="goToFoodDetail" data-id="{{featuredFood._id}}">
-      <image src="{{featuredFood.coverImage}}" class="featured-image" mode="aspectFill" />
-      <view class="featured-body">
-        <view class="featured-meta">
-          <text class="pill pill-secondary">地方名片</text>
-          <text class="featured-price">¥{{featuredFood.price}}</text>
-        </view>
-        <text class="featured-title">{{featuredFood.name}}</text>
-        <text class="featured-desc">{{featuredFood.brief}}</text>
-      </view>
-    </view>
-
-    <view class="side-feed">
-      <view class="side-card card" wx:for="{{sideHotFoods}}" wx:key="_id" bindtap="goToFoodDetail" data-id="{{item._id}}">
-        <image src="{{item.coverImage}}" class="side-image" mode="aspectFill" />
-        <view class="side-body">
-          <text class="side-title">{{item.name}}</text>
-          <text class="side-desc">{{item.brief}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
   <view class="culture-spot section-block">
     <view class="culture-card">
-      <text class="culture-title">指尖上的传承：拉面技艺与城市记忆</text>
-      <text class="culture-desc">把手作、汤头、晨市和街巷关系转化为可阅读、可展示、可讲解的文化档案，突出“宣传”而非“点餐”导向。</text>
-      <view class="culture-btn" bindtap="goToPromoPage">进入专题阅读</view>
-    </view>
-  </view>
-
-  <view class="section-block" wx:if="{{recommendations.length > 0}}">
-    <view class="section-head">
-      <view>
-        <text class="eyebrow">FOR YOU</text>
-        <text class="section-title">个性化推荐</text>
-      </view>
-    </view>
-
-    <view class="side-feed">
-      <view class="side-card card" wx:for="{{recommendations}}" wx:key="_id" bindtap="goToRecommendation" data-id="{{item._id}}">
-        <image src="{{item.coverImage}}" class="side-image" mode="aspectFill" />
-        <view class="side-body">
-          <text class="side-title">{{item.name}}</text>
-          <text class="side-desc">{{item.brief}}</text>
-        </view>
-      </view>
+      <text class="culture-title">让小程序先讲故事，再承接功能</text>
+      <text class="culture-desc">这一版首页把“宣传专题、文化档案、片单推荐、活动路线”作为主链路，团购与下单能力保留但降为次级入口，更符合“兰州美食文化宣传小程序”的答辩定位。</text>
+      <view class="culture-btn" bindtap="goToPromoPage">查看宣传框架</view>
     </view>
   </view>
 
@@ -156,7 +146,7 @@
     <view class="section-head">
       <view>
         <text class="eyebrow">AGENDA</text>
-        <text class="section-title">近期活动</text>
+        <text class="section-title">文化活动与体验路线</text>
       </view>
       <text class="section-link" bindtap="goToActivity">更多活动</text>
     </view>

@@ -16,7 +16,9 @@ function buildProfileState(userInfo) {
     userInfo,
     isLoggedIn,
     profileName: isLoggedIn ? (userInfo.nickName || '丝路寻味者') : '点击登录',
-    profileSubtitle: isLoggedIn ? '美食探索家 · 入驻于 2026 年' : '登录后同步你的收藏、团购和投票记录'
+    profileSubtitle: isLoggedIn
+      ? '已同步你的文化收藏、活动报名与浏览足迹'
+      : '登录后可同步你的专题收藏、活动报名和文化浏览记录'
   }
 }
 
@@ -25,27 +27,20 @@ Page({
     userInfo: null,
     isLoggedIn: false,
     profileName: '点击登录',
-    profileSubtitle: '登录后同步你的收藏、团购和投票记录',
-    activeTab: '我的分享',
+    profileSubtitle: '登录后可同步你的专题收藏、活动报名和文化浏览记录',
+    activeTab: '我的收藏',
     stats: [
-      { title: '已探索美食', value: '24' },
-      { title: '可用优惠券', value: '12' }
+      { title: '已浏览专题', value: '24' },
+      { title: '已收藏内容', value: '12' }
     ],
     actions: [
-      { id: 'history', title: '活动记录' },
-      { id: 'orders', title: '我的团购' },
-      { id: 'favorites', title: '文化收藏' }
+      { id: 'favorites', title: '我的文化收藏' },
+      { id: 'stories', title: '我的分享内容' },
+      { id: 'orders', title: '我的体验预约' }
     ],
     recommendations: [],
     featuredRecommendation: null,
-    secondaryRecommendation: null,
-    menuItems: [
-      { id: 'orders', title: '我的订单', icon: 'order.png' },
-      { id: 'favorites', title: '我的收藏', icon: 'favor.png' },
-      { id: 'stories', title: '我的分享', icon: 'share.png' },
-      { id: 'votes', title: '我的投票', icon: 'vote.png' },
-      { id: 'settings', title: '设置', icon: 'setting.png' }
-    ]
+    secondaryRecommendation: null
   },
 
   onLoad() {
@@ -61,9 +56,8 @@ Page({
     this.setData(Object.assign(
       {},
       buildProfileState(userInfo),
-      buildRecommendationState(await deepResolveDisplayImages(mockData.getHotFoods(2)))
+      buildRecommendationState(await deepResolveDisplayImages(mockData.getArticles().slice(0, 2)))
     ))
-
   },
 
   goToLogin() {
@@ -81,7 +75,7 @@ Page({
     this.setData(Object.assign(
       {},
       buildProfileState(null),
-      buildRecommendationState(mockData.getHotFoods(2))
+      buildRecommendationState(mockData.getArticles().slice(0, 2))
     ))
     wx.showToast({ title: '已退出登录', icon: 'success' })
   },
@@ -118,7 +112,7 @@ Page({
     this.setData(Object.assign(
       {},
       buildProfileState(userInfo),
-      buildRecommendationState(mockData.getHotFoods(2))
+      buildRecommendationState(mockData.getArticles().slice(0, 2))
     ))
   }
 })

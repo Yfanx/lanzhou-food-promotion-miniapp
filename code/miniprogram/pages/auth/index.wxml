@@ -11,7 +11,7 @@
 
   <view class="auth-card">
     <text class="auth-title">{{requirePhoneBinding ? '补充手机号' : '授权登录'}}</text>
-    <text class="auth-subtitle">{{requirePhoneBinding ? '活动报名、团购下单等操作会用到手机号。' : '登录后同步收藏、订单和个人记录。'}}</text>
+    <text class="auth-subtitle">{{requirePhoneBinding ? '活动报名、体验预约和线下联络会用到手机号。' : '登录后同步你的专题收藏、活动报名和传播记录。'}}</text>
 
     <button class="auth-primary" bindtap="wxLogin" type="primary">
       {{userInfo ? '更新微信资料' : '微信授权登录'}}

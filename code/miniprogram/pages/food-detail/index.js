@@ -3,18 +3,23 @@ const mockData = require('../../utils/mock-data')
 const { deepResolveDisplayImages, isInvalidImagePath } = require('../../utils/cloud-images')
 const { getFastCatalog } = require('../../utils/catalog-cache')
 
+function getCategoryName(categoryId) {
+  const category = mockData.getCategories().find((item) => item._id === categoryId)
+  return category ? category.name : '地方风味'
+}
+
 Page({
   data: {
     food: null,
     images: [],
     loading: true,
     reviews: [
-      { name: '张伟', score: '5.0', text: '汤头干净利落，辣子香得很克制，整体层次非常稳。' },
-      { name: 'Elena S.', score: '4.5', text: '画面、香气和入口的节奏都很完整，适合做城市名片。' }
+      { name: '张伟', score: '5.0', text: '这道内容很适合做城市名片展示，画面感和故事感都很完整。' },
+      { name: 'Elena S.', score: '4.5', text: '从味道延伸到城市气质的表达很清楚，适合作为宣传项目内容。' }
     ],
     nearbyStores: [
-      { name: '金城面馆', distance: '距你 1.2km', status: '营业中', cta: '立即预约' },
-      { name: '丝路小馆', distance: '距你 0.8km', status: '座位充足', cta: '去看看' }
+      { name: '金城面馆', distance: '距你 1.2km', status: '可作体验点位', cta: '查看路线' },
+      { name: '丝路小馆', distance: '距你 0.8km', status: '适合线下打卡', cta: '前往了解' }
     ]
   },
 
@@ -73,7 +78,9 @@ Page({
   applyFood(food) {
     const images = food.images && food.images.length ? food.images : [food.coverImage]
     this.setData({
-      food,
+      food: Object.assign({}, food, {
+        categoryName: getCategoryName(food.categoryId)
+      }),
       images,
       loading: false
     })

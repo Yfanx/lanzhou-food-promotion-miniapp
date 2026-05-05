@@ -8,16 +8,17 @@
 
   <view class="section-block" wx:if="{{isLoggedIn}}">
     <text class="eyebrow">COLLECTION</text>
-    <text class="section-title">我的收藏</text>
+    <text class="section-title">我的文化收藏</text>
   </view>
 
   <view class="favorites-list" wx:if="{{isLoggedIn && favorites.length > 0}}">
     <view class="fav-card card" wx:for="{{favorites}}" wx:key="_id">
       <image src="{{item.foodId.coverImage || '/assets/icons/placeholder.png'}}" class="fav-image" mode="aspectFill" bindtap="goToFoodDetail" data-id="{{item.foodId._id}}"/>
       <view class="fav-body" bindtap="goToFoodDetail" data-id="{{item.foodId._id}}">
+        <text class="fav-tag">已收藏内容</text>
         <text class="fav-title">{{item.foodId.name}}</text>
         <text class="fav-brief">{{item.foodId.brief}}</text>
-        <text class="fav-price">¥{{item.foodId.price}}</text>
+        <text class="fav-link">继续查看专题</text>
       </view>
       <view class="fav-actions">
         <view class="action-remove" bindtap="removeFavorite" data-id="{{item._id}}">取消收藏</view>
@@ -26,11 +27,11 @@
   </view>
 
   <view class="empty" wx:if="{{isLoggedIn && !loading && favorites.length === 0}}">
-    <text>暂无收藏</text>
+    <text>暂无收藏内容</text>
   </view>
 
   <view class="login-prompt section-block" wx:if="{{!isLoggedIn}}">
-    <text class="prompt-text">登录后查看收藏</text>
+    <text class="prompt-text">登录后查看你的文化收藏</text>
     <view class="prompt-btn" bindtap="goToLogin">立即登录</view>
   </view>
 

@@ -30,6 +30,13 @@
   font-weight: 700;
 }
 
+.fav-tag {
+  color: var(--color-secondary);
+  font-size: 18rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+}
+
 .fav-brief {
   margin-top: 10rpx;
   color: var(--color-text-soft);
@@ -41,11 +48,10 @@
   -webkit-box-orient: vertical;
 }
 
-.fav-price {
+.fav-link {
   margin-top: 14rpx;
   color: var(--color-primary);
-  font-size: 30rpx;
-  font-style: italic;
+  font-size: 20rpx;
   font-weight: 700;
 }
 

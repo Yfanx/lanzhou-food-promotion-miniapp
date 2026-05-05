@@ -5,26 +5,24 @@
       <text class="brand-text">兰州美食</text>
     </view>
     <view class="topbar-actions">
-      <view class="icon-button">惠</view>
+      <view class="icon-button">荐</view>
     </view>
   </view>
 
   <view class="section-block">
-    <text class="eyebrow">SPECIALS</text>
-    <text class="section-title">限时特惠，抢完即止。</text>
+    <text class="eyebrow">CURATION</text>
+    <text class="section-title">精选宣传选题</text>
+    <text class="market-intro">这里不再强调限时优惠，而是集中展示适合做宣传扩展、线下体验或专题策展的代表性内容。</text>
   </view>
 
   <view class="market-grid">
     <view class="market-card card" wx:for="{{products}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
       <image src="{{item.coverImage}}" class="market-card-image" mode="aspectFill" />
       <view class="market-card-body">
-        <text class="pill pill-secondary">限时特惠</text>
+        <text class="pill pill-secondary">宣传选题</text>
         <text class="market-card-title">{{item.name}}</text>
-        <view class="market-price-row">
-          <text class="market-price">¥{{item.discountPrice || item.price}}</text>
-          <text class="market-origin" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
-        </view>
-        <text class="market-meta">剩余 {{item.stock}} 件</text>
+        <text class="market-copy">适合放入专题策划、文化故事或线下体验路线中，作为宣传展示的延伸内容。</text>
+        <text class="market-meta">可结合体验路线继续展开</text>
       </view>
     </view>
   </view>

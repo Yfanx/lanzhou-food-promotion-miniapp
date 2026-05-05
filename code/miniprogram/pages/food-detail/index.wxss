@@ -71,15 +71,13 @@
 
 .detail-price {
   color: var(--color-primary);
-  font-size: 54rpx;
-  font-style: italic;
+  font-size: 40rpx;
   font-weight: 700;
 }
 
 .detail-origin {
   color: #9d8c87;
-  font-size: 26rpx;
-  text-decoration: line-through;
+  font-size: 24rpx;
 }
 
 .meta-line {
@@ -235,8 +233,7 @@ rich-text {
 .floating-amount {
   display: block;
   color: var(--color-primary);
-  font-size: 34rpx;
-  font-style: italic;
+  font-size: 28rpx;
   font-weight: 700;
 }
 

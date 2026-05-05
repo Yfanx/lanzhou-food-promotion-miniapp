@@ -6,9 +6,9 @@ Page({
     loading: true,
     isLoggedIn: false,
     statusMap: {
-      0: '待支付',
-      1: '待发货',
-      2: '待收货',
+      0: '待确认',
+      1: '已受理',
+      2: '待体验',
       3: '已完成',
       '-1': '已取消'
     }
@@ -48,7 +48,7 @@ Page({
         loading: false
       })
     } catch (e) {
-      console.error('加载订单失败', e)
+      console.error('load experience records failed', e)
       this.setData({ loading: false })
     }
   },

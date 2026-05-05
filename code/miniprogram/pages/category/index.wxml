@@ -8,7 +8,8 @@
 
   <view class="section-block">
     <text class="eyebrow">DISCOVER</text>
-    <text class="section-title">分类选食</text>
+    <text class="section-title">风味专题索引</text>
+    <text class="category-intro">按面食、烧烤、小吃和饮品等主题浏览兰州代表风味，重点展示地方名片与文化线索。</text>
   </view>
 
   <view class="tabs-row section-block">
@@ -22,9 +23,10 @@
     <view class="food-card card" wx:for="{{foods}}" wx:key="_id" bindtap="goToFoodDetail" data-id="{{item._id}}">
       <image src="{{item.coverImage}}" class="food-card-image" mode="aspectFill" />
       <view class="food-card-body">
+        <text class="food-card-tag">地方名片</text>
         <text class="food-card-title">{{item.name}}</text>
         <text class="food-card-brief">{{item.brief}}</text>
-        <text class="food-card-price">¥{{item.price}}</text>
+        <text class="food-card-link">进入文化介绍</text>
       </view>
     </view>
   </view>

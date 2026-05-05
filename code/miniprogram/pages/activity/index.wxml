@@ -5,7 +5,7 @@
       <text class="brand-text">兰州美食</text>
     </view>
     <view class="topbar-actions">
-      <view class="icon-button">搜</view>
+      <view class="icon-button">展</view>
     </view>
   </view>
 
@@ -13,12 +13,12 @@
     <image src="{{heroActivity.coverImage}}" class="activity-hero-image" mode="aspectFill" />
     <view class="activity-hero-mask"></view>
     <view class="activity-hero-body">
-      <text class="pill pill-secondary">{{heroActivity.type === 'lecture' ? '专家讲座' : '精选活动'}}</text>
+      <text class="pill pill-secondary">{{heroActivity.type === 'lecture' ? '专题讲座' : '精选活动'}}</text>
       <text class="activity-hero-title">{{heroActivity.title}}</text>
       <text class="activity-hero-desc">{{heroActivity.brief}}</text>
       <view class="activity-hero-actions">
-        <view class="hero-btn-primary" bindtap="goToActivity">探索活动</view>
-        <view class="hero-btn-ghost" bindtap="goToVote">现场投票</view>
+        <view class="hero-btn-primary" bindtap="goToActivity">查看活动策划</view>
+        <view class="hero-btn-ghost" bindtap="goToVote">参与主题投票</view>
       </view>
     </view>
   </view>
@@ -27,7 +27,7 @@
     <view class="section-head">
       <view>
         <text class="eyebrow">VOTING</text>
-        <text class="section-title">年度最佳面馆投票</text>
+        <text class="section-title">年度城市名片票选</text>
       </view>
     </view>
     <view class="vote-highlight card">
@@ -40,7 +40,7 @@
           <view class="vote-fill" style="width: {{item.progressWidth}};"></view>
         </view>
       </view>
-      <view class="vote-cta" bindtap="goToVote">去投票</view>
+      <view class="vote-cta" bindtap="goToVote">去参与投票</view>
     </view>
   </view>
 
@@ -48,7 +48,7 @@
     <view class="section-head">
       <view>
         <text class="eyebrow">AGENDA</text>
-        <text class="section-title">近期活动</text>
+        <text class="section-title">近期宣传活动</text>
       </view>
     </view>
     <view class="agenda-list">
@@ -63,12 +63,12 @@
           <text class="agenda-meta">{{item.startTime}} - {{item.endTime}}</text>
           <text class="agenda-brief">{{item.brief}}</text>
         </view>
-        <view class="agenda-btn" bindtap="goToActivityDetail" data-id="{{item._id}}">立即参与</view>
+        <view class="agenda-btn" bindtap="goToActivityDetail" data-id="{{item._id}}">查看策划详情</view>
       </view>
     </view>
   </view>
 
   <view class="empty" wx:if="{{!loading && activities.length === 0}}">
-    <text>暂无活动</text>
+    <text>暂无活动内容</text>
   </view>
 </view>

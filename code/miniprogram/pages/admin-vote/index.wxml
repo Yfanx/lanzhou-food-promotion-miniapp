@@ -1,0 +1,71 @@
+<view class="admin-vote">
+  <view class="page-header">
+    <text class="page-title">投票管理</text>
+    <button class="add-btn" bindtap="showAddForm">+ 添加投票</button>
+  </view>
+
+  <view class="vote-list">
+    <view class="vote-item" wx:for="{{votes}}" wx:key="_id">
+      <view class="vote-info">
+        <text class="vote-title">{{item.title}}</text>
+        <text class="vote-desc">{{item.description}}</text>
+        <text class="vote-end">截止: {{item.endTime}}</text>
+        <view class="vote-options">
+          <text class="option-tag" wx:for="{{item.options}}" wx:for-item="opt" wx:key="index">{{opt.name || opt.text}} ({{opt.count}})</text>
+        </view>
+      </view>
+      <view class="vote-actions">
+        <button size="mini" bindtap="showEditForm" data-vote="{{item}}">编辑</button>
+        <button size="mini" type="warn" bindtap="deleteVote" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && votes.length === 0}}">
+    <text>暂无投票</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="form-modal" wx:if="{{showForm}}">
+    <view class="form-container">
+      <text class="form-title">{{editingId ? '编辑投票' : '添加投票'}}</text>
+
+      <view class="form-item">
+        <text class="form-label">投票标题</text>
+        <input class="form-input" placeholder="请输入投票标题" bindinput="onFormChange" data-field="title" value="{{formData.title}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">描述</text>
+        <input class="form-input" placeholder="请输入投票描述" bindinput="onFormChange" data-field="description" value="{{formData.description}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">截止时间</text>
+        <input class="form-input" placeholder="格式: 2026-05-31" bindinput="onFormChange" data-field="endTime" value="{{formData.endTime}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">选项</text>
+        <view class="option-list">
+          <view class="option-item" wx:for="{{formData.options}}" wx:key="index">
+            <text>{{item.name || item.text}}</text>
+            <text class="remove-option" bindtap="removeOption" data-index="{{index}}">x</text>
+          </view>
+        </view>
+        <view class="add-option">
+          <input class="form-input" placeholder="输入新选项" value="{{newOptionText}}" bindinput="onNewOptionChange"/>
+          <button size="mini" bindtap="addOption">添加</button>
+        </view>
+      </view>
+
+      <view class="form-actions">
+        <button bindtap="hideForm">取消</button>
+        <button type="primary" bindtap="saveVote">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

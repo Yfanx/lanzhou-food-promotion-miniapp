@@ -1,0 +1,59 @@
+<view class="admin-order">
+  <view class="page-header">
+    <text class="page-title">订单管理</text>
+  </view>
+
+  <view class="filter-tabs">
+    <view class="filter-tab {{statusFilter === null ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="">
+      全部
+    </view>
+    <view class="filter-tab {{statusFilter === 0 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{0}}">
+      待支付
+    </view>
+    <view class="filter-tab {{statusFilter === 1 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{1}}">
+      待发货
+    </view>
+    <view class="filter-tab {{statusFilter === 2 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{2}}">
+      已完成
+    </view>
+    <view class="filter-tab {{statusFilter === -1 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{-1}}">
+      已取消
+    </view>
+  </view>
+
+  <view class="order-list">
+    <view class="order-item" wx:for="{{orders}}" wx:key="_id">
+      <view class="order-header">
+        <text class="order-no">{{item.orderNo}}</text>
+        <text class="order-status status-{{item.status}}">
+          {{item.status === 0 ? '待支付' : item.status === 1 ? '待发货' : item.status === 2 ? '已完成' : '已取消'}}
+        </text>
+      </view>
+      <view class="order-foods">
+        <text wx:for="{{item.foods}}" wx:for-item="food" wx:key="foodId">{{food.name}} x{{food.count}}</text>
+      </view>
+      <view class="order-footer">
+        <text class="order-price">¥{{item.totalPrice}}</text>
+        <text>联系人：{{item.contactName || '未填写'}}</text>
+        <text>手机号：{{item.contactPhone || '未绑定'}}</text>
+        <view class="order-actions">
+          <button size="mini" wx:if="{{item.status === 0}}" bindtap="updateOrderStatus" data-id="{{item._id}}" data-status="{{1}}">标记发货</button>
+          <button size="mini" wx:if="{{item.status === 1}}" bindtap="updateOrderStatus" data-id="{{item._id}}" data-status="{{2}}">标记完成</button>
+          <button size="mini" wx:if="{{item.status === 0 || item.status === 1}}" bindtap="updateOrderStatus" data-id="{{item._id}}" data-status="{{-1}}">取消订单</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && orders.length === 0}}">
+    <text>暂无订单</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="load-more" wx:if="{{hasMore && !loading}}" bindtap="loadMore">
+    <text>加载更多</text>
+  </view>
+</view>

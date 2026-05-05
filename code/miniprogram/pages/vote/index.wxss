@@ -1,0 +1,71 @@
+.vote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.vote-card {
+  padding: 30rpx;
+}
+
+.vote-card-head {
+  margin-bottom: 22rpx;
+}
+
+.vote-title {
+  display: block;
+  color: var(--color-text);
+  font-size: 42rpx;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.vote-deadline {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--color-text-soft);
+  font-size: 20rpx;
+}
+
+.vote-option-item {
+  margin-bottom: 20rpx;
+}
+
+.vote-option-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.vote-name {
+  color: var(--color-text);
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.vote-count {
+  color: var(--color-primary);
+  font-size: 20rpx;
+  font-weight: 800;
+}
+
+.vote-progress {
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: rgba(221, 192, 186, 0.45);
+  overflow: hidden;
+}
+
+.vote-progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-soft));
+}
+
+.loading,
+.empty {
+  padding: 80rpx 0;
+  text-align: center;
+  color: var(--color-text-soft);
+}

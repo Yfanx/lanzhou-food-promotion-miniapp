@@ -1,0 +1,41 @@
+<view class="page-shell">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{isLoggedIn}}">
+    <text class="eyebrow">STORIES</text>
+    <text class="section-title">我的分享</text>
+  </view>
+
+  <view class="stories-list" wx:if="{{isLoggedIn && stories.length > 0}}">
+    <view class="story-card card" wx:for="{{stories}}" wx:key="_id">
+      <view class="story-header">
+        <text class="story-status {{item.status === 1 ? 'status-pass' : 'status-pending'}}">
+          {{item.status === 1 ? '已发布' : '待审核'}}
+        </text>
+        <text class="story-time">{{item.createTime}}</text>
+      </view>
+      <text class="story-content">{{item.content}}</text>
+      <view class="story-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image src="{{img}}" wx:for="{{item.images}}" wx:key="*this" mode="aspectFill" class="story-img" />
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{isLoggedIn && !loading && stories.length === 0}}">
+    <text>暂无分享</text>
+  </view>
+
+  <view class="login-prompt section-block" wx:if="{{!isLoggedIn}}">
+    <text class="prompt-text">登录后查看分享</text>
+    <view class="prompt-btn" bindtap="goToLogin">立即登录</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

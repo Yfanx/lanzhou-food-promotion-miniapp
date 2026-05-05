@@ -1,0 +1,40 @@
+<view class="auth-page">
+  <view class="auth-header">
+    <view class="brand-row">
+      <image src="{{userInfo && userInfo.avatarUrl ? userInfo.avatarUrl : '/assets/icons/avatar.png'}}" class="brand-avatar" mode="aspectFill" />
+      <view class="brand-copy">
+        <text class="brand-title">兰州美食</text>
+        <text class="brand-subtitle">{{userInfo && userInfo.nickName ? userInfo.nickName : '微信快捷登录'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="auth-card">
+    <text class="auth-title">{{requirePhoneBinding ? '补充手机号' : '授权登录'}}</text>
+    <text class="auth-subtitle">{{requirePhoneBinding ? '活动报名、团购下单等操作会用到手机号。' : '登录后同步收藏、订单和个人记录。'}}</text>
+
+    <button class="auth-primary" bindtap="wxLogin" type="primary">
+      {{userInfo ? '更新微信资料' : '微信授权登录'}}
+    </button>
+
+    <button class="auth-secondary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      {{userInfo && userInfo.phone ? '重新获取微信手机号' : '获取微信手机号'}}
+    </button>
+
+    <view class="field-group">
+      <text class="field-label">手机号</text>
+      <input
+        class="auth-input"
+        type="number"
+        maxlength="11"
+        placeholder="授权失败时可手动填写"
+        value="{{manualPhone}}"
+        bindinput="onManualPhoneInput"
+      />
+    </view>
+
+    <button class="auth-danger" bindtap="saveManualPhone">保存手机号</button>
+
+    <text class="auth-tip">登录即表示同意《用户协议》和《隐私政策》</text>
+  </view>
+</view>

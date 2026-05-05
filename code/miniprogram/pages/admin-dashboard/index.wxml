@@ -1,0 +1,80 @@
+<view class="admin-dashboard">
+  <view class="dashboard-header">
+    <text class="header-title">管理后台</text>
+    <text class="header-subtitle">兰州美食文化宣传小程序</text>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-user">
+      <text class="stat-number">{{stats.users}}</text>
+      <text class="stat-label">用户数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-user">
+      <text class="stat-number">{{stats.phoneBoundUsers}}</text>
+      <text class="stat-label">已绑手机</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-food">
+      <text class="stat-number">{{stats.foods}}</text>
+      <text class="stat-label">美食数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-order">
+      <text class="stat-number">{{stats.orders}}</text>
+      <text class="stat-label">订单数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-activity">
+      <text class="stat-number">{{stats.activities}}</text>
+      <text class="stat-label">活动数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-announcement">
+      <text class="stat-number">{{stats.announcements}}</text>
+      <text class="stat-label">公告数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-vote">
+      <text class="stat-number">{{stats.votes}}</text>
+      <text class="stat-label">投票数</text>
+    </view>
+    <view class="stat-card" bindtap="navigateTo" data-page="admin-story">
+      <text class="stat-number">{{stats.stories}}</text>
+      <text class="stat-label">分享数</text>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <text class="section-title">内容管理</text>
+    <view class="menu-grid">
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-banner">
+        <text class="menu-text">轮播管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-category">
+        <text class="menu-text">分类管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-food">
+        <text class="menu-text">美食管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-activity">
+        <text class="menu-text">活动管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-announcement">
+        <text class="menu-text">公告管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-vote">
+        <text class="menu-text">投票管理</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <text class="section-title">审核与运营</text>
+    <view class="menu-grid">
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-story">
+        <text class="menu-text">分享审核</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-order">
+        <text class="menu-text">订单管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="admin-user">
+        <text class="menu-text">用户管理</text>
+      </view>
+    </view>
+  </view>
+</view>

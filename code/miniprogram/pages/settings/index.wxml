@@ -1,0 +1,41 @@
+<view class="page-shell">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="settings-list section-block">
+    <view class="settings-item" bindtap="goToLogin" wx:if="{{!isLoggedIn}}">
+      <text class="settings-title">登录账号</text>
+      <text class="settings-arrow">→</text>
+    </view>
+
+    <view class="settings-item" bindtap="goToPhoneBinding" wx:if="{{isLoggedIn}}">
+      <text class="settings-title">手机号状态：{{userInfo.phone ? userInfo.phone : '未绑定'}}</text>
+      <text class="settings-arrow">→</text>
+    </view>
+
+    <view class="settings-item" bindtap="goToAdmin" wx:if="{{isAdmin}}">
+      <text class="settings-title admin-link">管理后台</text>
+      <text class="settings-arrow">→</text>
+    </view>
+
+    <view class="settings-item" bindtap="clearCache">
+      <text class="settings-title">清除缓存</text>
+      <text class="settings-arrow">→</text>
+    </view>
+
+    <view class="settings-item" bindtap="aboutUs">
+      <text class="settings-title">关于我们</text>
+      <text class="settings-arrow">→</text>
+    </view>
+  </view>
+
+  <view class="logout-section" wx:if="{{isLoggedIn}}">
+    <view class="logout-btn" bindtap="logout">
+      <text>退出登录</text>
+    </view>
+  </view>
+</view>

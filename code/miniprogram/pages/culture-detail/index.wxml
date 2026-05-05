@@ -1,0 +1,27 @@
+<view class="page-shell">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="detail-hero" wx:if="{{article}}">
+    <image src="{{article.coverImage}}" class="detail-hero-image" mode="aspectFill" />
+    <view class="detail-hero-mask"></view>
+    <view class="detail-hero-body">
+      <text class="pill pill-secondary">文化档案</text>
+      <text class="detail-hero-title">{{article.title}}</text>
+    </view>
+  </view>
+
+  <view class="detail-content section-block" wx:if="{{article}}">
+    <text class="detail-section-title">{{article.title}}</text>
+    <text class="detail-meta">{{article.createTime}} · {{article.category}}</text>
+    <text class="detail-text">{{article.content || article.brief}}</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

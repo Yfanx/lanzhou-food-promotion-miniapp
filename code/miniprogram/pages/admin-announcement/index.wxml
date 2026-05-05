@@ -1,0 +1,58 @@
+<view class="admin-announcement">
+  <view class="page-header">
+    <text class="page-title">公告管理</text>
+    <button class="add-btn" bindtap="showAddForm">+ 添加公告</button>
+  </view>
+
+  <view class="announcement-list">
+    <view class="announcement-item" wx:for="{{announcements}}" wx:key="_id">
+      <view class="announcement-info">
+        <text class="announcement-title">{{item.title}}</text>
+        <text class="announcement-content">{{item.content}}</text>
+        <text class="announcement-type">类型: {{item.type === 0 ? '系统' : '活动'}}</text>
+      </view>
+      <view class="announcement-actions">
+        <button size="mini" bindtap="showEditForm" data-ann="{{item}}">编辑</button>
+        <button size="mini" type="warn" bindtap="deleteAnnouncement" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && announcements.length === 0}}">
+    <text>暂无公告</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="form-modal" wx:if="{{showForm}}">
+    <view class="form-container">
+      <text class="form-title">{{editingId ? '编辑公告' : '添加公告'}}</text>
+
+      <view class="form-item">
+        <text class="form-label">公告标题</text>
+        <input class="form-input" placeholder="请输入公告标题" bindinput="onFormChange" data-field="title" value="{{formData.title}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">公告内容</text>
+        <textarea class="form-textarea" placeholder="请输入公告内容" bindinput="onFormChange" data-field="content" value="{{formData.content}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">公告类型</text>
+        <picker bindchange="onFormChange" data-field="type" value="{{formData.type}}" range="{{['系统公告', '活动公告']}}">
+          <view class="picker-value">
+            {{['系统公告', '活动公告'][formData.type]}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-actions">
+        <button bindtap="hideForm">取消</button>
+        <button type="primary" bindtap="saveAnnouncement">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

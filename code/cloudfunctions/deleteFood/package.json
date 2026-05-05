@@ -1,0 +1,9 @@
+{
+  "name": "deleteFood",
+  "version": "1.0.0",
+  "description": "删除美食",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

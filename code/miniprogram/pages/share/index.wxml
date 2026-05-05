@@ -1,0 +1,61 @@
+<view class="page-shell share-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">搜</view>
+    </view>
+  </view>
+
+  <view class="share-head section-block">
+    <text class="eyebrow">DISCOVERY</text>
+    <text class="section-title">发现丝路味道</text>
+  </view>
+
+  <view class="composer card section-block">
+    <text class="composer-title">分享你的美食记忆</text>
+    <textarea
+      class="composer-input"
+      placeholder="写下你与这道美食、这条街或者这家店的故事..."
+      value="{{content}}"
+      bindinput="onContentChange"
+      maxlength="500"
+    />
+    <view class="composer-foot">
+      <text class="composer-count">{{content.length}}/500</text>
+      <view class="composer-actions">
+        <view class="composer-ghost" bindtap="chooseImage">添加图片</view>
+        <view class="composer-primary" bindtap="submit">发布故事</view>
+      </view>
+    </view>
+    <view class="images-grid" wx:if="{{images.length > 0}}">
+      <view class="image-item" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill"></image>
+        <view class="remove-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="story-list">
+    <view class="story-feature card" wx:if="{{featuredStory}}">
+      <image src="{{featuredStory.image}}" class="story-feature-image" mode="aspectFill" />
+      <view class="story-feature-body">
+        <text class="story-author">{{featuredStory.author}}</text>
+        <text class="story-feature-title">{{featuredStory.title}}</text>
+        <text class="story-feature-brief">{{featuredStory.brief}}</text>
+        <text class="story-place">{{featuredStory.place}}</text>
+      </view>
+    </view>
+
+    <view class="story-card card" wx:for="{{moreStories}}" wx:key="id">
+      <image src="{{item.image}}" class="story-card-image" mode="aspectFill" />
+      <view class="story-card-body">
+        <text class="story-card-title">{{item.title}}</text>
+        <text class="story-card-brief">{{item.brief}}</text>
+        <text class="story-card-foot">{{item.author}} · {{item.place}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,94 @@
+<view class="detail-page" wx:if="{{!loading && food}}">
+  <view class="detail-hero">
+    <swiper class="detail-swiper" indicator-dots circular autoplay>
+      <swiper-item wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" class="detail-image" mode="aspectFill" bindtap="previewImage" data-src="{{item}}" />
+      </swiper-item>
+    </swiper>
+    <view class="detail-overlay">
+      <text class="pill pill-secondary">传统非遗</text>
+      <text class="detail-title">{{food.name}}</text>
+      <text class="detail-brief">{{food.brief}}</text>
+    </view>
+  </view>
+
+  <view class="detail-shell">
+    <view class="detail-card intro-card">
+      <view class="price-line">
+        <text class="detail-price">¥{{food.price}}</text>
+        <text class="detail-origin" wx:if="{{food.originalPrice}}">¥{{food.originalPrice}}</text>
+      </view>
+      <view class="meta-line">
+        <text>已售 {{food.sales || 0}}</text>
+        <text>库存 {{food.stock || 0}}</text>
+        <text>分类 {{food.categoryId}}</text>
+      </view>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">历史与文化</text>
+      <text class="detail-section-text">{{food.description ? '' : food.brief}}</text>
+      <rich-text wx:if="{{food.description}}" nodes="{{food.description}}"></rich-text>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">食材与制作</text>
+      <view class="ingredient-grid">
+        <view class="ingredient-item">
+          <text class="ingredient-tag">手工拉制</text>
+          <text class="ingredient-text">保留拉面延展感与筋度。</text>
+        </view>
+        <view class="ingredient-item">
+          <text class="ingredient-tag">老汤慢熬</text>
+          <text class="ingredient-text">清亮汤底更适合首页和详情展示。</text>
+        </view>
+        <view class="ingredient-item">
+          <text class="ingredient-tag">灵魂辣子</text>
+          <text class="ingredient-text">色泽和香气共同抬高画面表现。</text>
+        </view>
+        <view class="ingredient-item">
+          <text class="ingredient-tag">鲜香点缀</text>
+          <text class="ingredient-text">香菜与白萝卜让层次更完整。</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">食客评价</text>
+      <view class="review-item" wx:for="{{reviews}}" wx:key="name">
+        <view class="review-head">
+          <text class="review-name">{{item.name}}</text>
+          <text class="review-score">{{item.score}}</text>
+        </view>
+        <text class="review-text">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">附近门店</text>
+      <view class="store-item" wx:for="{{nearbyStores}}" wx:key="name">
+        <view class="store-copy">
+          <text class="store-name">{{item.name}}</text>
+          <text class="store-meta">{{item.distance}} · {{item.status}}</text>
+        </view>
+        <view class="store-btn">{{item.cta}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="floating-bar">
+    <view class="floating-price">
+      <text class="floating-label">参考价</text>
+      <text class="floating-amount">¥{{food.price}}</text>
+    </view>
+    <view class="floating-actions">
+      <view class="ghost-btn" bindtap="goToShare">分享</view>
+      <view class="ghost-btn" bindtap="goToVote">投票</view>
+      <view class="primary-btn" bindtap="goToGroupBuy">去团购</view>
+    </view>
+  </view>
+</view>
+
+<view class="loading" wx:if="{{loading}}">
+  <text>加载中...</text>
+</view>

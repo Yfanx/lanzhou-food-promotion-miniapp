@@ -1,0 +1,115 @@
+<view class="admin-activity">
+  <view class="page-header">
+    <text class="page-title">活动管理</text>
+    <button class="add-btn" bindtap="showAddForm">+ 添加活动</button>
+  </view>
+
+  <view class="activity-list">
+    <view class="activity-item" wx:for="{{activities}}" wx:key="_id">
+      <image class="activity-image" src="{{item.coverImage}}" mode="aspectFill"/>
+      <view class="activity-info">
+        <text class="activity-title">{{item.title}}</text>
+        <text class="activity-time">{{item.startTime}} - {{item.endTime}}</text>
+        <text class="activity-location">{{item.location || '未设置地点'}}</text>
+        <text class="activity-location" wx:if="{{item.type === 'lecture'}}">主讲人：{{item.speaker || '未设置'}}</text>
+        <text class="activity-location" wx:if="{{item.signupDeadline}}">报名截止：{{item.signupDeadline}}</text>
+        <view class="activity-status">
+          <text class="status-tag status-{{item.status}}">
+            {{item.status === 0 ? '未开始' : item.status === 1 ? '进行中' : '已结束'}}
+          </text>
+          <text class="status-tag">{{item.type === 'lecture' ? '讲座' : '活动'}}</text>
+        </view>
+      </view>
+      <view class="activity-actions">
+        <button size="mini" bindtap="showEditForm" data-activity="{{item}}">编辑</button>
+        <button size="mini" type="warn" bindtap="deleteActivity" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && activities.length === 0}}">
+    <text>暂无活动</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="form-modal" wx:if="{{showForm}}">
+    <view class="form-container">
+      <text class="form-title">{{editingId ? '编辑活动' : '添加活动'}}</text>
+
+      <view class="form-item">
+        <text class="form-label">活动标题</text>
+        <input class="form-input" placeholder="请输入活动标题" bindinput="onInputChange" data-field="title" value="{{formData.title}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">活动简介</text>
+        <input class="form-input" placeholder="请输入活动简介" bindinput="onInputChange" data-field="brief" value="{{formData.brief}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">封面图片</text>
+        <view class="image-picker" bindtap="chooseImage">
+          <image wx:if="{{formData.coverImage}}" src="{{formData.coverImage}}" mode="aspectFill"/>
+          <text wx:else>+</text>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">开始时间</text>
+        <input class="form-input" placeholder="格式：2026-05-01 19:30" bindinput="onInputChange" data-field="startTime" value="{{formData.startTime}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">结束时间</text>
+        <input class="form-input" placeholder="格式：2026-05-01 21:00" bindinput="onInputChange" data-field="endTime" value="{{formData.endTime}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">报名截止</text>
+        <input class="form-input" placeholder="格式：2026-04-30 18:00" bindinput="onInputChange" data-field="signupDeadline" value="{{formData.signupDeadline}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">活动类型</text>
+        <picker bindchange="onTypeChange" value="{{typeIndex}}" range="{{typeOptions}}">
+          <view class="picker-value">{{formData.type === 'lecture' ? '讲座' : '活动'}}</view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">活动地点</text>
+        <input class="form-input" placeholder="请输入活动地点" bindinput="onInputChange" data-field="location" value="{{formData.location}}"/>
+      </view>
+
+      <view class="form-item" wx:if="{{formData.type === 'lecture'}}">
+        <text class="form-label">主讲人</text>
+        <input class="form-input" placeholder="请输入主讲人" bindinput="onInputChange" data-field="speaker" value="{{formData.speaker}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">人数上限</text>
+        <input class="form-input" type="number" placeholder="不填默认为不限" bindinput="onInputChange" data-field="capacity" value="{{formData.capacity}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">活动描述</text>
+        <textarea class="form-input" placeholder="请输入活动描述" bindinput="onInputChange" data-field="description">{{formData.description}}</textarea>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">活动状态</text>
+        <picker bindchange="onStatusChange" value="{{formData.status}}" range="{{statusOptions}}">
+          <view class="picker-value">{{statusOptions[formData.status]}}</view>
+        </picker>
+      </view>
+
+      <view class="form-actions">
+        <button bindtap="hideForm">取消</button>
+        <button type="primary" bindtap="saveActivity">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

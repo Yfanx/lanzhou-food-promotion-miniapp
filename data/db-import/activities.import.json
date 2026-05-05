@@ -1,0 +1,53 @@
+﻿[
+    {
+        "title":  "兰州牛肉面文化公开讲座",
+        "brief":  "面向游客与本地青年群体的线上讲座，介绍牛肉面工艺、非遗传播与城市饮食记忆。",
+        "description":  "本场讲座以兰州牛肉面为主线，讲解其工艺流程、非遗传播背景和城市文化价值，适合作为毕设中“线上讲座”功能的演示数据。",
+        "coverImage":  "/assets/test-images/activities/activity-1.jpg",
+        "startTime":  "2026-05-10 19:30",
+        "endTime":  "2026-05-10 21:00",
+        "signupDeadline":  "2026-05-09 18:00",
+        "type":  "lecture",
+        "location":  "线上直播间",
+        "speaker":  "兰州饮食文化研究讲师",
+        "capacity":  120,
+        "status":  1,
+        "sourceName":  "中国甘肃网",
+        "sourceUrl":  "https://gansu.gscn.com.cn/system/2020/05/08/012380371.shtml",
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    },
+    {
+        "title":  "黄河风味夜游体验活动",
+        "brief":  "结合城市夜游与饮食文化体验设计的线下活动，可作为前台活动页主视觉内容。",
+        "description":  "活动围绕夜游、地方风味和城市文化体验展开，用户可报名参加打卡与品鉴环节，用于展示活动详情页、报名页和后台管理链路。",
+        "coverImage":  "/assets/test-images/activities/activity-2.jpg",
+        "startTime":  "2026-05-18 18:30",
+        "endTime":  "2026-05-18 21:30",
+        "signupDeadline":  "2026-05-17 18:00",
+        "type":  "event",
+        "location":  "兰州市黄河风情线",
+        "speaker":  "",
+        "capacity":  80,
+        "status":  1,
+        "sourceName":  "甘肃省文化和旅游厅",
+        "sourceUrl":  "https://www.gswbj.gov.cn/a/2024/02/22/19750.html",
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    },
+    {
+        "title":  "非遗饮食主题分享沙龙",
+        "brief":  "小型线下分享活动，适合演示讲座/活动双类型共存的数据模型。",
+        "description":  "本场沙龙聚焦非遗饮食、城市品牌和青年传播，支持报名、签到和后台查看报名记录。",
+        "coverImage":  "/assets/test-images/activities/activity-3.jpg",
+        "startTime":  "2026-05-24 14:00",
+        "endTime":  "2026-05-24 16:00",
+        "signupDeadline":  "2026-05-23 18:00",
+        "type":  "lecture",
+        "location":  "兰州文化体验空间",
+        "speaker":  "地方文化志愿讲师",
+        "capacity":  60,
+        "status":  1,
+        "sourceName":  "兰州市政协",
+        "sourceUrl":  "https://www.gslzzx.gov.cn/art/2021/12/28/art_11982_1082971.html",
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    }
+]

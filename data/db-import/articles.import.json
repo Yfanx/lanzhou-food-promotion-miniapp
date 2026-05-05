@@ -1,0 +1,38 @@
+﻿[
+    {
+        "title":  "兰州牛肉面数字传播案例",
+        "brief":  "围绕兰州牛肉面非遗数字化传播整理的文化文章，适合在文化页和讲座关联内容中展示。",
+        "content":  "兰州牛肉面既是地方饮食符号，也是城市文化名片。公开报道中提到，非遗上云与数字传播让兰州牛肉面的工艺、品牌和城市记忆有了新的展示方式。本条内容适合作为文化档案，用于说明牛肉面从街头日常走向数字传播与城市品牌建设的过程。",
+        "coverImage":  "/assets/test-images/articles/article-1.jpg",
+        "type":  "culture",
+        "sourceName":  "中国甘肃网",
+        "sourceUrl":  "https://gansu.gscn.com.cn/system/2020/05/08/012380371.shtml",
+        "publishedAt":  "2020-05-08",
+        "status":  1,
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    },
+    {
+        "title":  "兰州饮食文化与城市文旅融合",
+        "brief":  "以官方文旅报道为依据，概括兰州文旅与地方饮食、夜游体验、城市形象传播之间的结合方式。",
+        "content":  "官方文旅报道中，兰州被放在黄河文化、夜游经济、城市体验和区域旅游联动的背景中观察。饮食不再只是单一消费内容，而是与城市空间、文化活动和游客体验共同构成文旅场景。这类文章可用于文化页中的城市饮食专题。",
+        "coverImage":  "/assets/test-images/articles/article-2.jpg",
+        "type":  "culture",
+        "sourceName":  "甘肃省文化和旅游厅",
+        "sourceUrl":  "https://www.gswbj.gov.cn/a/2024/02/22/19750.html",
+        "publishedAt":  "2024-02-22",
+        "status":  1,
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    },
+    {
+        "title":  "兰州牛肉面非遗保护背景梳理",
+        "brief":  "结合公开提案材料整理的非遗保护背景说明，适合作为讲座页和文化详情页的延展阅读。",
+        "content":  "围绕兰州牛肉面非遗保护的公开材料强调了技艺传承、品牌保护、标准建设和产业推广的协同推进。本条内容适合用于说明牛肉面在地方文化传承中的代表意义，也可作为线上讲座详情页的相关阅读文章。",
+        "coverImage":  "/assets/test-images/articles/article-3.jpg",
+        "type":  "heritage",
+        "sourceName":  "兰州市政协",
+        "sourceUrl":  "https://www.gslzzx.gov.cn/art/2021/12/28/art_11982_1082971.html",
+        "publishedAt":  "2021-12-28",
+        "status":  1,
+        "importedAt":  "2026-04-19T17:21:58+08:00"
+    }
+]

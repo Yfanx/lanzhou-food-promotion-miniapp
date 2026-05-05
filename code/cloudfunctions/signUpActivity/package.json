@@ -1,0 +1,9 @@
+{
+  "name": "signUpActivity",
+  "version": "1.0.0",
+  "description": "活动报名",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

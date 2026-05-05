@@ -1,0 +1,82 @@
+.market-intro {
+  display: block;
+  margin-top: 18rpx;
+  color: var(--color-text-soft);
+  font-size: 24rpx;
+  line-height: 1.75;
+}
+
+.market-feature {
+  overflow: hidden;
+  margin-bottom: 18rpx;
+}
+
+.market-feature-image {
+  width: 100%;
+  height: 420rpx;
+}
+
+.market-feature-body,
+.market-card-body {
+  padding: 28rpx;
+}
+
+.market-feature-title,
+.market-card-title {
+  display: block;
+  margin-top: 14rpx;
+  color: var(--color-text);
+  font-size: 40rpx;
+  line-height: 1.15;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.market-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  margin-top: 14rpx;
+}
+
+.market-price {
+  color: var(--color-primary);
+  font-size: 40rpx;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.market-origin {
+  color: #9f8b85;
+  font-size: 22rpx;
+  text-decoration: line-through;
+}
+
+.market-meta {
+  display: block;
+  margin-top: 14rpx;
+  color: var(--color-text-soft);
+  font-size: 20rpx;
+}
+
+.market-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.market-card-image {
+  width: 100%;
+  height: 300rpx;
+}
+
+.market-join {
+  display: inline-flex;
+  margin-top: 18rpx;
+  padding: 16rpx 26rpx;
+  border-radius: 999rpx;
+  background: var(--color-surface-low);
+  color: var(--color-text);
+  font-size: 20rpx;
+  font-weight: 800;
+}

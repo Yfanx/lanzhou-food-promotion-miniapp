@@ -1,0 +1,40 @@
+.notice-detail {
+  padding-bottom: 60rpx;
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.notice-title {
+  flex: 1;
+  color: var(--color-text);
+  font-size: 48rpx;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.notice-time {
+  display: block;
+  margin-top: 20rpx;
+  color: var(--color-text-soft);
+  font-size: 22rpx;
+}
+
+.notice-content {
+  display: block;
+  margin-top: 40rpx;
+  color: var(--color-text-soft);
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.loading {
+  padding: 80rpx 0;
+  text-align: center;
+  color: var(--color-text-soft);
+}

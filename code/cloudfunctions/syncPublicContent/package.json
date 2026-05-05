@@ -1,0 +1,9 @@
+{
+  "name": "syncPublicContent",
+  "version": "1.0.0",
+  "description": "Seed demo content into CloudBase collections",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

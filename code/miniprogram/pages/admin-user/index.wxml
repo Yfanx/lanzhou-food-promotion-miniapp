@@ -1,0 +1,33 @@
+<view class="admin-user">
+  <view class="page-header">
+    <text class="page-title">用户管理</text>
+    <text class="user-count">共 {{users.length}} 位用户</text>
+  </view>
+
+  <view class="user-list">
+    <view class="user-item" wx:for="{{users}}" wx:key="_id">
+      <view class="user-avatar">
+        <image wx:if="{{item.avatarUrl}}" src="{{item.avatarUrl}}" mode="aspectFill" />
+        <text wx:else>{{item.displayInitial}}</text>
+      </view>
+      <view class="user-info">
+        <text class="user-name">{{item.nickName}}</text>
+        <text class="user-openid">openid: {{item.openid || '缺失'}}</text>
+        <text class="user-time">手机号：{{item.phone || '未绑定'}}</text>
+        <text class="user-time">手机号状态：{{item.phoneStatusText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && users.length === 0}}">
+    <text>暂无用户</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="load-more" wx:if="{{hasMore && !loading}}" bindtap="loadMore">
+    <text>加载更多</text>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="page-shell">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <text class="eyebrow">LIST</text>
+    <text class="section-title">美食清单</text>
+  </view>
+
+  <view class="food-list">
+    <view class="food-card card" wx:for="{{foods}}" wx:key="_id" bindtap="goToFoodDetail" data-id="{{item._id}}">
+      <image src="{{item.coverImage}}" class="food-card-image" mode="aspectFill" />
+      <view class="food-card-body">
+        <text class="food-card-title">{{item.name}}</text>
+        <text class="food-card-brief">{{item.brief}}</text>
+        <text class="food-card-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>

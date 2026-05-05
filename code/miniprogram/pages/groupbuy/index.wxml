@@ -1,0 +1,49 @@
+<view class="page-shell market-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">团</view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <text class="eyebrow">GROUP BUY</text>
+    <text class="section-title">地道风味，拼团共享。</text>
+    <text class="market-intro">通过拼团套餐体验兰州美食主题内容，支持直接下单并跳转订单页查看结果。</text>
+  </view>
+
+  <view class="market-feature card" wx:if="{{featuredProduct}}">
+    <view bindtap="goToDetail" data-id="{{featuredProduct.foodId}}">
+      <image src="{{featuredProduct.coverImage}}" class="market-feature-image" mode="aspectFill" />
+      <view class="market-feature-body">
+        <text class="pill pill-secondary">团购独家</text>
+        <text class="market-feature-title">{{featuredProduct.name}}</text>
+        <view class="market-price-row">
+          <text class="market-price">¥{{featuredProduct.groupPrice}}</text>
+          <text class="market-origin">¥{{featuredProduct.originalPrice}}</text>
+        </view>
+        <text class="market-meta">{{featuredProduct.minPeople}}人成团 · 库存 {{featuredProduct.stock}}</text>
+      </view>
+    </view>
+    <view class="market-join" bindtap="quickOrder" data-index="0">立即下单</view>
+  </view>
+
+  <view class="market-grid">
+    <view class="market-card card" wx:for="{{otherProducts}}" wx:key="_id">
+      <view bindtap="goToDetail" data-id="{{item.foodId}}">
+        <image src="{{item.coverImage}}" class="market-card-image" mode="aspectFill" />
+        <view class="market-card-body">
+          <text class="market-card-title">{{item.name}}</text>
+          <view class="market-price-row">
+            <text class="market-price">¥{{item.groupPrice}}</text>
+            <text class="market-origin">¥{{item.originalPrice}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="market-join" bindtap="quickOrder" data-index="{{index + 1}}">立即下单</view>
+    </view>
+  </view>
+</view>

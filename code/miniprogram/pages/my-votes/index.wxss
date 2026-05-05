@@ -1,0 +1,75 @@
+.votes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  padding: 0 20rpx;
+}
+
+.vote-card {
+  padding: 28rpx;
+}
+
+.vote-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.vote-title {
+  color: var(--color-text);
+  font-size: 32rpx;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.vote-time {
+  color: var(--color-text-soft);
+  font-size: 22rpx;
+}
+
+.vote-choice {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.choice-label {
+  color: var(--color-text-soft);
+  font-size: 24rpx;
+}
+
+.choice-value {
+  color: var(--color-primary);
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+}
+
+.prompt-text {
+  color: var(--color-text-soft);
+  font-size: 28rpx;
+  margin-bottom: 32rpx;
+}
+
+.prompt-btn {
+  padding: 24rpx 48rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.empty,
+.loading {
+  padding: 80rpx 0;
+  text-align: center;
+  color: var(--color-text-soft);
+}

@@ -1,0 +1,8 @@
+.ai_context.md
+.claude/
+node_modules/
+miniprogram_npm/
+dist/
+*.log
+Thumbs.db
+.DS_Store

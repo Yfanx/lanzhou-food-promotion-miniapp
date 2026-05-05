@@ -1,0 +1,53 @@
+<view class="page-shell culture-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">搜</view>
+    </view>
+  </view>
+
+  <view class="culture-hero card section-block" wx:if="{{featuredArticle}}">
+    <image src="{{featuredArticle.coverImage}}" class="culture-hero-image" mode="aspectFill" />
+    <view class="culture-hero-mask"></view>
+    <view class="culture-hero-body">
+      <text class="pill pill-secondary">焦点</text>
+      <text class="culture-hero-title">{{featuredArticle.title}}</text>
+      <text class="culture-hero-desc">{{featuredArticle.brief}}</text>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="tabs-row">
+      <view class="tab-chip {{activeTab === item ? 'tab-chip-active' : ''}}" wx:for="{{tabs}}" wx:key="*this" data-tab="{{item}}" bindtap="selectTab">
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <view class="culture-grid">
+    <view class="culture-card-item card" wx:for="{{articles}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+      <image src="{{item.coverImage}}" class="culture-card-image" mode="aspectFill" />
+      <view class="culture-card-body">
+        <text class="culture-card-meta">{{activeTab}}</text>
+        <text class="culture-card-title">{{item.title}}</text>
+        <text class="culture-card-brief">{{item.brief}}</text>
+        <text class="culture-card-time">{{item.createTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="culture-feature section-block">
+    <view class="culture-feature-card">
+      <text class="culture-feature-eyebrow">面条词典</text>
+      <text class="culture-feature-title">把一碗面背后的词汇、故事与手法收进文化档案。</text>
+      <view class="culture-feature-btn">探索更多故事</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && articles.length === 0}}">
+    <text>暂无文化内容</text>
+  </view>
+</view>

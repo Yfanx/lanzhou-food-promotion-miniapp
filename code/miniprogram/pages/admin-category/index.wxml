@@ -1,0 +1,53 @@
+<view class="admin-category">
+  <view class="page-header">
+    <text class="page-title">分类管理</text>
+    <button class="add-btn" bindtap="showAddForm">+ 添加分类</button>
+  </view>
+
+  <view class="category-list">
+    <view class="category-item" wx:for="{{categories}}" wx:key="_id">
+      <view class="category-info">
+        <text class="category-name">{{item.name}}</text>
+        <text class="category-order">排序: {{item.order || 0}}</text>
+      </view>
+      <view class="category-actions">
+        <button size="mini" bindtap="showEditForm" data-category="{{item}}">编辑</button>
+        <button size="mini" type="warn" bindtap="deleteCategory" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && categories.length === 0}}">
+    <text>暂无分类</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="form-modal" wx:if="{{showForm}}">
+    <view class="form-container">
+      <text class="form-title">{{editingId ? '编辑分类' : '添加分类'}}</text>
+
+      <view class="form-item">
+        <text class="form-label">分类名称</text>
+        <input class="form-input" placeholder="请输入分类名称" bindinput="onFormChange" data-field="name" value="{{formData.name}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">图标URL</text>
+        <input class="form-input" placeholder="请输入图标URL" bindinput="onFormChange" data-field="icon" value="{{formData.icon}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">排序值</text>
+        <input class="form-input" type="number" placeholder="数字越小越靠前" bindinput="onFormChange" data-field="order" value="{{formData.order}}"/>
+      </view>
+
+      <view class="form-actions">
+        <button bindtap="hideForm">取消</button>
+        <button type="primary" bindtap="saveCategory">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

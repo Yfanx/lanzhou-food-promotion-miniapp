@@ -1,0 +1,90 @@
+<view class="admin-food">
+  <view class="page-header">
+    <text class="page-title">美食管理</text>
+    <view class="btn-add" bindtap="showAddModal">
+      <text>+ 添加美食</text>
+    </view>
+  </view>
+
+  <view class="food-list">
+    <view class="food-item" wx:for="{{foods}}" wx:key="_id">
+      <image class="food-image" src="{{item.coverImage || '/assets/icons/placeholder.png'}}" mode="aspectFill"/>
+      <view class="food-info">
+        <text class="food-name">{{item.name}}</text>
+        <text class="food-brief">{{item.brief}}</text>
+        <text class="food-price">¥{{item.price}}</text>
+      </view>
+      <view class="food-actions">
+        <view class="action-btn edit" bindtap="showEditModal" data-item="{{item}}">编辑</view>
+        <view class="action-btn delete" bindtap="deleteFood" data-id="{{item._id}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && foods.length === 0}}">
+    <text>暂无美食</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="load-more" wx:if="{{hasMore && !loading}}" bindtap="loadMore">
+    <text>加载更多</text>
+  </view>
+
+  <!-- 添加/编辑弹窗 -->
+  <view class="modal" wx:if="{{showModal}}" catchtap="hideModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">{{isEdit ? '编辑美食' : '添加美食'}}</text>
+        <view class="modal-close" bindtap="hideModal">×</view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">美食名称 *</text>
+        <input class="form-input" value="{{form.name}}" placeholder="请输入美食名称" bindinput="onFormInput" data-field="name"/>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">简介</text>
+        <input class="form-input" value="{{form.brief}}" placeholder="请输入简短描述" bindinput="onFormInput" data-field="brief"/>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">价格</text>
+        <input class="form-input" type="digit" value="{{form.price}}" placeholder="请输入价格" bindinput="onFormInput" data-field="price"/>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">原价</text>
+        <input class="form-input" type="digit" value="{{form.originalPrice}}" placeholder="请输入原价" bindinput="onFormInput" data-field="originalPrice"/>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">库存</text>
+        <input class="form-input" type="number" value="{{form.stock}}" placeholder="请输入库存" bindinput="onFormInput" data-field="stock"/>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">分类ID</text>
+        <input class="form-input" value="{{form.categoryId}}" placeholder="如：cat-noodles" bindinput="onFormInput" data-field="categoryId"/>
+      </view>
+
+      <view class="form-group form-switch">
+        <text class="form-label">热销</text>
+        <switch checked="{{form.isHot}}" bindchange="onSwitchChange" data-field="isHot"/>
+      </view>
+
+      <view class="form-group form-switch">
+        <text class="form-label">特价</text>
+        <switch checked="{{form.isDiscount}}" bindchange="onSwitchChange" data-field="isDiscount"/>
+      </view>
+
+      <view class="form-actions">
+        <view class="btn-cancel" bindtap="hideModal">取消</view>
+        <view class="btn-confirm" bindtap="submitForm">{{isEdit ? '保存' : '添加'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

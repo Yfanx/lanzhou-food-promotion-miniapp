@@ -1,0 +1,49 @@
+<view class="admin-story">
+  <view class="page-header">
+    <text class="page-title">分享审核</text>
+  </view>
+
+  <view class="filter-tabs">
+    <view class="filter-tab {{statusFilter === 0 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{0}}">
+      待审核
+    </view>
+    <view class="filter-tab {{statusFilter === 1 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{1}}">
+      已通过
+    </view>
+    <view class="filter-tab {{statusFilter === -1 ? 'active' : ''}}" bindtap="onStatusFilterChange" data-status="{{-1}}">
+      已拒绝
+    </view>
+  </view>
+
+  <view class="story-list">
+    <view class="story-item" wx:for="{{stories}}" wx:key="_id">
+      <view class="story-content">
+        <text class="story-title">{{item.title}}</text>
+        <text class="story-text">{{item.content}}</text>
+        <view class="story-images" wx:if="{{item.images && item.images.length > 0}}">
+          <image wx:for="{{item.images}}" wx:for-item="img" wx:key="index" src="{{img}}" mode="aspectFill"/>
+        </view>
+        <view class="story-meta">
+          <text class="story-author">{{item.nickname || '匿名用户'}}</text>
+          <text class="story-time">{{item.createTime}}</text>
+        </view>
+      </view>
+      <view class="story-actions" wx:if="{{statusFilter === 0}}">
+        <button size="mini" type="primary" bindtap="approveStory" data-id="{{item._id}}">通过</button>
+        <button size="mini" bindtap="rejectStory" data-id="{{item._id}}">拒绝</button>
+        <button size="mini" type="warn" bindtap="deleteStory" data-id="{{item._id}}">删除</button>
+      </view>
+      <view class="story-actions" wx:else>
+        <button size="mini" type="warn" bindtap="deleteStory" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && stories.length === 0}}">
+    <text>暂无待审核故事</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

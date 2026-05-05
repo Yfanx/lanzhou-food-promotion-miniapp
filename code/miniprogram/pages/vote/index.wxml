@@ -1,0 +1,42 @@
+<view class="page-shell vote-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">票</view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <text class="eyebrow">VOTING</text>
+    <text class="section-title">为年度最佳面馆投上一票</text>
+  </view>
+
+  <view class="vote-list">
+    <view class="vote-card card" wx:for="{{votes}}" wx:key="_id">
+      <view class="vote-card-head">
+        <text class="vote-title">{{item.title}}</text>
+        <text class="vote-deadline">截止 {{item.endTime}}</text>
+      </view>
+
+      <view class="vote-option-item" wx:for="{{item.options}}" wx:for-item="option" wx:key="id" bindtap="submitVote" data-vote-id="{{item._id}}" data-option-id="{{option.id}}">
+        <view class="vote-option-head">
+          <text class="vote-name">{{option.name || option.text}}</text>
+          <text class="vote-count">{{option.count}} 票</text>
+        </view>
+        <view class="vote-progress">
+          <view class="vote-progress-fill" style="width: {{item.totalCount ? (option.count / item.totalCount * 100) : 0}}%;"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="empty" wx:if="{{!loading && votes.length === 0}}">
+    <text>暂无投票</text>
+  </view>
+</view>

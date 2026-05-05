@@ -1,0 +1,66 @@
+.tabs-row {
+  display: flex;
+  gap: 14rpx;
+  overflow-x: scroll;
+}
+
+.tab-chip {
+  flex-shrink: 0;
+  padding: 18rpx 28rpx;
+  border-radius: 999rpx;
+  background: var(--color-surface-strong);
+  color: var(--color-text-soft);
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.tab-chip-active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+  color: #ffffff;
+}
+
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.food-card {
+  display: flex;
+}
+
+.food-card-image {
+  width: 240rpx;
+  height: 220rpx;
+  flex-shrink: 0;
+}
+
+.food-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24rpx;
+}
+
+.food-card-title {
+  color: var(--color-text);
+  font-size: 32rpx;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.food-card-brief {
+  margin-top: 10rpx;
+  color: var(--color-text-soft);
+  font-size: 22rpx;
+  line-height: 1.65;
+}
+
+.food-card-price {
+  margin-top: 14rpx;
+  color: var(--color-primary);
+  font-size: 32rpx;
+  font-style: italic;
+  font-weight: 700;
+}

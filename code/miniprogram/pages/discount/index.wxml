@@ -1,0 +1,31 @@
+<view class="page-shell market-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">惠</view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <text class="eyebrow">SPECIALS</text>
+    <text class="section-title">限时特惠，抢完即止。</text>
+  </view>
+
+  <view class="market-grid">
+    <view class="market-card card" wx:for="{{products}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+      <image src="{{item.coverImage}}" class="market-card-image" mode="aspectFill" />
+      <view class="market-card-body">
+        <text class="pill pill-secondary">限时特惠</text>
+        <text class="market-card-title">{{item.name}}</text>
+        <view class="market-price-row">
+          <text class="market-price">¥{{item.discountPrice || item.price}}</text>
+          <text class="market-origin" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+        </view>
+        <text class="market-meta">剩余 {{item.stock}} 件</text>
+      </view>
+    </view>
+  </view>
+</view>

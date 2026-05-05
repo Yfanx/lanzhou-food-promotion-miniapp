@@ -1,0 +1,63 @@
+[
+  {
+    "name": "兰州牛肉面",
+    "brief": "兰州代表性饮食名片，适合用作首页、详情页和推荐区的核心展示内容。",
+    "description": "兰州牛肉面以汤、面、肉、萝卜、蒜苗和辣子油的组合闻名，是本项目文化传播与推荐演示中的核心美食内容。",
+    "coverImage": "/assets/test-images/foods/food-1.jpg",
+    "images": [
+      "/assets/test-images/foods/food-1.jpg",
+      "/assets/test-images/foods/food-2.jpg"
+    ],
+    "price": 28,
+    "originalPrice": 32,
+    "stock": 120,
+    "sales": 560,
+    "isHot": 1,
+    "isDiscount": 0,
+    "discountPrice": 0,
+    "status": 1,
+    "sort": 1,
+    "sourceName": "中国甘肃网",
+    "sourceUrl": "https://gansu.gscn.com.cn/system/2020/05/08/012380371.shtml"
+  },
+  {
+    "name": "酿皮",
+    "brief": "兰州街头常见风味小吃，适合分类页与推荐区展示。",
+    "description": "酿皮是兰州地方小吃中辨识度较高的一类，常与辣油、蒜汁、醋汁搭配，适合作为地方风味代表之一。",
+    "coverImage": "/assets/test-images/foods/food-3.jpg",
+    "images": [
+      "/assets/test-images/foods/food-3.jpg"
+    ],
+    "price": 16,
+    "originalPrice": 18,
+    "stock": 90,
+    "sales": 320,
+    "isHot": 1,
+    "isDiscount": 1,
+    "discountPrice": 14,
+    "status": 1,
+    "sort": 2,
+    "sourceName": "平台整理自公开资料",
+    "sourceUrl": "https://www.gswbj.gov.cn/a/2024/02/22/19750.html"
+  },
+  {
+    "name": "手抓羊肉",
+    "brief": "适合在文化页和团购页中展示的传统风味。",
+    "description": "手抓羊肉在西北地区具有鲜明代表性，兼具宴席场景与地方日常饮食记忆。",
+    "coverImage": "/assets/test-images/foods/food-4.jpg",
+    "images": [
+      "/assets/test-images/foods/food-4.jpg"
+    ],
+    "price": 68,
+    "originalPrice": 78,
+    "stock": 60,
+    "sales": 210,
+    "isHot": 1,
+    "isDiscount": 0,
+    "discountPrice": 0,
+    "status": 1,
+    "sort": 3,
+    "sourceName": "平台整理自公开资料",
+    "sourceUrl": "https://www.gslzzx.gov.cn/art/2021/12/28/art_11982_1082971.html"
+  }
+]

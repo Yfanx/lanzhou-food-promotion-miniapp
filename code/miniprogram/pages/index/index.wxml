@@ -1,0 +1,174 @@
+<view class="page-shell home-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">城</view>
+      <view class="icon-button">片</view>
+    </view>
+  </view>
+
+  <view class="hero-card section-block">
+    <swiper class="hero-swiper" indicator-dots autoplay circular>
+      <swiper-item wx:for="{{banners}}" wx:key="_id">
+        <view class="hero-slide">
+          <image src="{{item.image}}" class="hero-image" mode="aspectFill" />
+          <view class="hero-overlay">
+            <text class="pill pill-secondary">城市宣传</text>
+            <text class="hero-title">{{item.title || '兰州美食城市名片'}}</text>
+            <text class="hero-desc">从清晨的一碗面，到夜市里的烟火气，把兰州味道组织成适合传播、展示和讲述的城市叙事。</text>
+            <view class="hero-cta" bindtap="goToPromoPage">进入宣传专题</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="ticker section-block" bindtap="goToAnnouncement">
+    <text class="ticker-label">动态</text>
+    <text class="ticker-text">最新公告、文化档案更新、专题推荐与活动报名入口统一汇集在这里。</text>
+    <text class="ticker-arrow">→</text>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">PROMOTION</text>
+        <text class="section-title">城市宣传专题</text>
+      </view>
+      <text class="section-link" bindtap="goToPromoPage">查看片单</text>
+    </view>
+    <scroll-view class="promo-scroll" scroll-x enhanced show-scrollbar="false">
+      <view class="promo-row">
+        <view class="promo-card card" wx:for="{{promoFeatures}}" wx:key="_id" bindtap="goToPromoPage">
+          <image src="{{item.image}}" class="promo-image" mode="aspectFill" />
+          <view class="promo-body">
+            <text class="pill pill-secondary">{{item.tag}}</text>
+            <text class="promo-title">{{item.title}}</text>
+            <text class="promo-desc">{{item.summary}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">DOCUMENTARY</text>
+        <text class="section-title">纪录片与宣传片推荐</text>
+      </view>
+    </view>
+    <view class="doc-feed">
+      <view class="doc-card card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToDocumentary" data-article-id="{{item.articleId}}">
+        <image src="{{item.poster}}" class="doc-poster" mode="aspectFill" />
+        <view class="doc-mask"></view>
+        <view class="doc-body">
+          <view class="doc-meta">
+            <text class="doc-tag">{{item.category}}</text>
+            <text class="doc-duration">{{item.duration}}</text>
+          </view>
+          <text class="doc-title">{{item.title}}</text>
+          <text class="doc-desc">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">DISCOVER</text>
+        <text class="section-title">风味入口</text>
+      </view>
+    </view>
+    <view class="category-grid">
+      <view class="category-card" wx:for="{{categories}}" wx:key="_id" bindtap="goToCategory" data-id="{{item._id}}">
+        <image src="{{item.icon}}" class="category-image" mode="aspectFill" />
+        <view class="category-mask"></view>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">CURATED</text>
+        <text class="section-title">代表风味与地方名片</text>
+      </view>
+      <text class="section-link" bindtap="goToFoodList">查看全部</text>
+    </view>
+
+    <view class="featured-card card" wx:if="{{featuredFood}}" bindtap="goToFoodDetail" data-id="{{featuredFood._id}}">
+      <image src="{{featuredFood.coverImage}}" class="featured-image" mode="aspectFill" />
+      <view class="featured-body">
+        <view class="featured-meta">
+          <text class="pill pill-secondary">地方名片</text>
+          <text class="featured-price">¥{{featuredFood.price}}</text>
+        </view>
+        <text class="featured-title">{{featuredFood.name}}</text>
+        <text class="featured-desc">{{featuredFood.brief}}</text>
+      </view>
+    </view>
+
+    <view class="side-feed">
+      <view class="side-card card" wx:for="{{sideHotFoods}}" wx:key="_id" bindtap="goToFoodDetail" data-id="{{item._id}}">
+        <image src="{{item.coverImage}}" class="side-image" mode="aspectFill" />
+        <view class="side-body">
+          <text class="side-title">{{item.name}}</text>
+          <text class="side-desc">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="culture-spot section-block">
+    <view class="culture-card">
+      <text class="culture-title">指尖上的传承：拉面技艺与城市记忆</text>
+      <text class="culture-desc">把手作、汤头、晨市和街巷关系转化为可阅读、可展示、可讲解的文化档案，突出“宣传”而非“点餐”导向。</text>
+      <view class="culture-btn" bindtap="goToPromoPage">进入专题阅读</view>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{recommendations.length > 0}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">FOR YOU</text>
+        <text class="section-title">个性化推荐</text>
+      </view>
+    </view>
+
+    <view class="side-feed">
+      <view class="side-card card" wx:for="{{recommendations}}" wx:key="_id" bindtap="goToRecommendation" data-id="{{item._id}}">
+        <image src="{{item.coverImage}}" class="side-image" mode="aspectFill" />
+        <view class="side-body">
+          <text class="side-title">{{item.name}}</text>
+          <text class="side-desc">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{activities.length > 0}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">AGENDA</text>
+        <text class="section-title">近期活动</text>
+      </view>
+      <text class="section-link" bindtap="goToActivity">更多活动</text>
+    </view>
+    <view class="activity-stack">
+      <view class="activity-card card" wx:for="{{activities}}" wx:key="_id" bindtap="goToActivity">
+        <image src="{{item.coverImage}}" class="activity-image" mode="aspectFill" />
+        <view class="activity-content">
+          <text class="activity-name">{{item.title}}</text>
+          <text class="activity-time">{{item.startTime}} - {{item.endTime}}</text>
+          <text class="activity-brief">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

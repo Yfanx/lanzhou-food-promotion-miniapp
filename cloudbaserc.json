@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "cloud1-7glyj8fy8135ce71",
+  "functionRoot": "code/cloudfunctions",
+  "functions": [
+    {
+      "name": "syncPublicContent",
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "timeout": 30
+    }
+  ]
+}

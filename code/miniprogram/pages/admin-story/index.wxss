@@ -1,0 +1,104 @@
+.admin-story {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 32rpx;
+}
+
+.page-header {
+  margin-bottom: 32rpx;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.filter-tab {
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.filter-tab.active {
+  background: #d5322a;
+  color: #fff;
+}
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.story-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.story-content {
+  margin-bottom: 20rpx;
+}
+
+.story-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.story-text {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.story-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.story-images image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 8rpx;
+  background: #eee;
+}
+
+.story-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+.story-author, .story-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.story-actions {
+  display: flex;
+  gap: 12rpx;
+  padding-top: 16rpx;
+  border-top: 1px solid #f0f0f0;
+}
+
+.empty-state, .loading {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}

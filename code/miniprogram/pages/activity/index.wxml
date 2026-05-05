@@ -1,0 +1,74 @@
+<view class="page-shell activity-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+    <view class="topbar-actions">
+      <view class="icon-button">搜</view>
+    </view>
+  </view>
+
+  <view class="activity-hero section-block" wx:if="{{heroActivity}}">
+    <image src="{{heroActivity.coverImage}}" class="activity-hero-image" mode="aspectFill" />
+    <view class="activity-hero-mask"></view>
+    <view class="activity-hero-body">
+      <text class="pill pill-secondary">{{heroActivity.type === 'lecture' ? '专家讲座' : '精选活动'}}</text>
+      <text class="activity-hero-title">{{heroActivity.title}}</text>
+      <text class="activity-hero-desc">{{heroActivity.brief}}</text>
+      <view class="activity-hero-actions">
+        <view class="hero-btn-primary" bindtap="goToActivity">探索活动</view>
+        <view class="hero-btn-ghost" bindtap="goToVote">现场投票</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{featuredVote}}">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">VOTING</text>
+        <text class="section-title">年度最佳面馆投票</text>
+      </view>
+    </view>
+    <view class="vote-highlight card">
+      <view class="vote-option" wx:for="{{featuredVote.options}}" wx:key="id" bindtap="goToVote">
+        <view class="vote-option-head">
+          <text class="vote-option-name">{{item.orderLabel}}</text>
+          <text class="vote-option-count">{{item.count}} 票</text>
+        </view>
+        <view class="vote-track">
+          <view class="vote-fill" style="width: {{item.progressWidth}};"></view>
+        </view>
+      </view>
+      <view class="vote-cta" bindtap="goToVote">去投票</view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">AGENDA</text>
+        <text class="section-title">近期活动</text>
+      </view>
+    </view>
+    <view class="agenda-list">
+      <view class="agenda-card card" wx:for="{{activities}}" wx:key="_id">
+        <view class="agenda-date">
+          <text class="agenda-month">{{item.displayMonth}}月</text>
+          <text class="agenda-day">{{item.displayDay}}</text>
+        </view>
+        <view class="agenda-body">
+          <text class="agenda-title">{{item.title}}</text>
+          <text class="pill pill-secondary" wx:if="{{item.type === 'lecture'}}">讲座</text>
+          <text class="agenda-meta">{{item.startTime}} - {{item.endTime}}</text>
+          <text class="agenda-brief">{{item.brief}}</text>
+        </view>
+        <view class="agenda-btn" bindtap="goToActivityDetail" data-id="{{item._id}}">立即参与</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && activities.length === 0}}">
+    <text>暂无活动</text>
+  </view>
+</view>

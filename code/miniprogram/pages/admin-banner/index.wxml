@@ -1,0 +1,57 @@
+<view class="admin-banner">
+  <view class="page-header">
+    <text class="page-title">轮播管理</text>
+    <button class="add-btn" bindtap="showAddForm">+ 添加轮播图</button>
+  </view>
+
+  <view class="banner-list">
+    <view class="banner-item" wx:for="{{banners}}" wx:key="_id">
+      <image class="banner-image" src="{{item.image}}" mode="aspectFill"/>
+      <view class="banner-info">
+        <text class="banner-link">链接: {{item.link || '无'}}</text>
+        <text class="banner-order">排序: {{item.order}}</text>
+      </view>
+      <view class="banner-actions">
+        <button size="mini" bindtap="showEditForm" data-banner="{{item}}">编辑</button>
+        <button size="mini" type="warn" bindtap="deleteBanner" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && banners.length === 0}}">
+    <text>暂无轮播图</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="form-modal" wx:if="{{showForm}}">
+    <view class="form-container">
+      <text class="form-title">{{editingId ? '编辑轮播图' : '添加轮播图'}}</text>
+
+      <view class="form-item">
+        <text class="form-label">图片</text>
+        <view class="image-picker" bindtap="chooseImage">
+          <image wx:if="{{formData.image}}" src="{{formData.image}}" mode="aspectFill"/>
+          <text wx:else>+</text>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">链接地址</text>
+        <input class="form-input" placeholder="请输入链接" bindinput="onFormChange" data-field="link" value="{{formData.link}}"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">排序值</text>
+        <input class="form-input" type="number" placeholder="数字越小越靠前" bindinput="onFormChange" data-field="order" value="{{formData.order}}"/>
+      </view>
+
+      <view class="form-actions">
+        <button bindtap="hideForm">取消</button>
+        <button type="primary" bindtap="saveBanner">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

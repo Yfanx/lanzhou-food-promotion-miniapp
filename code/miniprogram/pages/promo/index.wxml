@@ -1,0 +1,90 @@
+<view class="page-shell promo-page">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="promo-hero card section-block">
+    <text class="eyebrow">PROMOTION</text>
+    <text class="promo-hero-title">让小程序从“点餐入口”转向“城市美食文化宣传窗口”</text>
+    <text class="promo-hero-desc">这一页集中展示适合答辩和后续完善的宣传内容结构，包括宣传片片单、城市故事主线、非遗技艺表达与专题阅读入口。</text>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">FEATURES</text>
+        <text class="section-title">宣传主线</text>
+      </view>
+    </view>
+    <view class="promo-grid">
+      <view class="promo-feature card" wx:for="{{promoFeatures}}" wx:key="_id">
+        <image src="{{item.image}}" class="promo-feature-image" mode="aspectFill" />
+        <view class="promo-feature-body">
+          <text class="pill pill-secondary">{{item.tag}}</text>
+          <text class="promo-feature-title">{{item.title}}</text>
+          <text class="promo-feature-desc">{{item.summary}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">FILMS</text>
+        <text class="section-title">纪录片 / 宣传片片单</text>
+      </view>
+    </view>
+    <view class="doc-list">
+      <view class="doc-item card" wx:for="{{documentaries}}" wx:key="_id" bindtap="goToArticle" data-id="{{item.articleId}}">
+        <image src="{{item.poster}}" class="doc-item-image" mode="aspectFill" />
+        <view class="doc-item-body">
+          <view class="doc-item-meta">
+            <text class="doc-item-tag">{{item.category}}</text>
+            <text class="doc-item-duration">{{item.duration}}</text>
+          </view>
+          <text class="doc-item-title">{{item.title}}</text>
+          <text class="doc-item-desc">{{item.brief}}</text>
+          <text class="doc-item-link">查看对应文化内容</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">ROUTES</text>
+        <text class="section-title">可持续扩展的宣传路线</text>
+      </view>
+    </view>
+    <view class="route-list">
+      <view class="route-card card" wx:for="{{routes}}" wx:key="_id">
+        <text class="route-tag">{{item.tag}}</text>
+        <text class="route-title">{{item.title}}</text>
+        <text class="route-desc">{{item.brief}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-block">
+    <view class="section-head">
+      <view>
+        <text class="eyebrow">ARCHIVE</text>
+        <text class="section-title">文化档案入口</text>
+      </view>
+    </view>
+    <view class="archive-list">
+      <view class="archive-card card" wx:for="{{articles}}" wx:key="_id" bindtap="goToArticle" data-id="{{item._id}}">
+        <image src="{{item.coverImage}}" class="archive-image" mode="aspectFill" />
+        <view class="archive-body">
+          <text class="archive-title">{{item.title}}</text>
+          <text class="archive-brief">{{item.brief}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

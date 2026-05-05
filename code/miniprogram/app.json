@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/index",
+    "pages/food-list/index",
+    "pages/food-detail/index",
+    "pages/share/index",
+    "pages/culture/index",
+    "pages/promo/index",
+    "pages/culture-detail/index",
+    "pages/activity/index",
+    "pages/activity-detail/index",
+    "pages/vote/index",
+    "pages/my-votes/index",
+    "pages/groupbuy/index",
+    "pages/discount/index",
+    "pages/announcement/index",
+    "pages/announcement-detail/index",
+    "pages/profile/index",
+    "pages/settings/index",
+    "pages/favorites/index",
+    "pages/orders/index",
+    "pages/my-stories/index",
+    "pages/auth/index",
+    "pages/admin-dashboard/index",
+    "pages/admin-banner/index",
+    "pages/admin-category/index",
+    "pages/admin-food/index",
+    "pages/admin-activity/index",
+    "pages/admin-order/index",
+    "pages/admin-announcement/index",
+    "pages/admin-vote/index",
+    "pages/admin-user/index",
+    "pages/admin-story/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d5322a",
+    "navigationBarTitleText": "兰州美食",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#d5322a",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/activity/index",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,39 @@
+<view class="page-shell">
+  <view class="topbar">
+    <view class="brand-row">
+      <view class="brand-pin"></view>
+      <text class="brand-text">兰州美食</text>
+    </view>
+  </view>
+
+  <view class="section-block" wx:if="{{isLoggedIn}}">
+    <text class="eyebrow">VOTES</text>
+    <text class="section-title">我的投票</text>
+  </view>
+
+  <view class="votes-list" wx:if="{{isLoggedIn && voteRecords.length > 0}}">
+    <view class="vote-card card" wx:for="{{voteRecords}}" wx:key="_id">
+      <view class="vote-title-row">
+        <text class="vote-title">{{item.voteTitle}}</text>
+        <text class="vote-time">{{item.createTime}}</text>
+      </view>
+      <view class="vote-choice">
+        <text class="choice-label">我的投票：</text>
+        <text class="choice-value">{{item.votedOption}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{isLoggedIn && !loading && voteRecords.length === 0}}">
+    <text>暂无投票记录</text>
+  </view>
+
+  <view class="login-prompt section-block" wx:if="{{!isLoggedIn}}">
+    <text class="prompt-text">登录后查看投票记录</text>
+    <view class="prompt-btn" bindtap="goToLogin">立即登录</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>
